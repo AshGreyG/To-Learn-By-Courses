@@ -1,3 +1,7 @@
+from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
 # Upper bounds O, Lower bounds Ω, Tight bounds Θ
 
 # +-------+----------+-------------+--------+--------------+-----------+------------+------------------+
@@ -7,15 +11,15 @@
 # | Time  |    1ns   |    10ns     |  1μs   |     10μs     |    1ms    | 10^(3c-9)s | 10^281 millenia  |
 # +-------+----------+-------------+--------+--------------+-----------+------------+------------------+
 
-class StaticArray :
-    def __init__(self, n: int) :
-        self.data = [None] * n
+class StaticArray(Generic[T]) :
+    def __init__(self, n: int) -> None :
+       self.data : list[T | None] = [None] * n
 
-    def get_at(self, i: int) :
+    def get_at(self, i: int) -> T :
         if not (0 <= i < len(self.data)) : raise IndexError
         return self.data[i]
     
-    def set_at(self, i: int, x) :
+    def set_at(self, i: int, x : T) -> None :
         if not (0 <= i < len(self.data)) : raise IndexError
         self.data[i] = x
 
