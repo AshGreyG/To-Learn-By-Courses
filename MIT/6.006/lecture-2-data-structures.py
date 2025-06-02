@@ -1,4 +1,5 @@
-from typing import TypeVar, Generic
+from __future__ import annotations
+from typing import TypeVar, Generic, Optional
 
 T = TypeVar("T")
 
@@ -117,7 +118,7 @@ class ArraySequence(Generic[T]) :
             x: New inserted element.
         """
         n = len(self)
-        A : list[T | None] = [None] * (n + 1)
+        A : list[Optional[T]] = [None] * (n + 1)
         self._copy_forward(0, i, A, 0)
         A[i] = x
         self._copy_forward(i, n - i, A, i + 1)
@@ -133,7 +134,7 @@ class ArraySequence(Generic[T]) :
             The element at index `i`, which is the deleted element.
         """
         n = len(self)
-        A : list[T | None] = [None] * (n - 1)
+        A : list[Optional[T]] = [None] * (n - 1)
         self._copy_forward(0, i, A, 0)
         x = self.A[i]
         self._copy_forward(i + 1, n - i - 1, A, i)
@@ -152,9 +153,9 @@ class ArraySequence(Generic[T]) :
 class LinkedListNode(Generic[T]) :
     def __init__(self, x : T) -> None :
         self.item : T = x
-        self.next : LinkedListNode[T] | None = None
+        self.next : Optional[LinkedListNode[T]] = None
     
-    def later_node(self, i : int) -> LinkedListNode[T] : # O(i)
+    def later_node(self, i : int) -> "LinkedListNode[T]" : # O(i)
         """
         This method gets the `i`-th node after this node, if the node is None,
         it will assert the error.
@@ -166,7 +167,7 @@ class LinkedListNode(Generic[T]) :
         """
         if i == 0 :
             return self
-        assert self.next
+        assert self.next is not None
         return self.next.later_node(i - 1)
 
 # Such data structure are sometimes called **pointer-based** or **linked** and
@@ -182,17 +183,26 @@ class LinkedListNode(Generic[T]) :
 
 class LinkedListSequence(Generic[T]) :
     def __init__(self) -> None :
-        self.head : LinkedListNode[T] | None = None
+        self.head : Optional[LinkedListNode[T]] = None
         self.size : int = 0
 
     def __len__(self) -> int :
         return self.size
 
     def __iter__(self) -> T :
-        node : LinkedListNode = self.head
+        node : Optional[LinkedListNode] = self.head
         while node != None :
             yield node.item
             node = node.next
+
+    def __str__(self) -> str :
+        node : Optional[LinkedListNode] = self.head
+        result = ""
+        while node != None :
+            result += (str(node.item) + " → ")
+            node = node.next
+        result += "None"
+        return result
 
     def build(self, X : list[T]) -> None :
         for a in reversed(X) :
@@ -250,6 +260,9 @@ class LinkedListSequence(Generic[T]) :
     def delete_at(self, i : int) -> T : # O(i)
         """
         This method deletes the element at the index `i` of the linked list.
+
+        Args:
+            i: The index of deleted element.
         """
         if i == 0 :
             return self.delete_first()
@@ -259,20 +272,41 @@ class LinkedListSequence(Generic[T]) :
         self.size -= 1
         return x
 
+    def insert_last(self, x : T) -> None : self.insert_at(len(self), x)
+    def delete_last(self) -> T :           return self.delete_at(len(self) - 1)
+
 if __name__ == "__main__" :
     # ArraySequence simple tests
 
-    array_seq = ArraySequence()
+    array_seq : ArraySequence[int] = ArraySequence()
     array_seq.build([1, 2, 3, 4])
     print(array_seq.get_at(3))  # 4, array_seq: [1, 2, 3, 4]
     array_seq.set_at(1, 3)
     print(array_seq)            # array_seq: [1, 3, 3, 4]
-    array_seq.insert_at(2, "3")
-    print(array_seq)            # array_seq: [1, 3, '3', 3, 4]
+    array_seq.insert_at(2, 9)
+    print(array_seq)            # array_seq: [1, 3, 9, 3, 4]
     array_seq.delete_at(2)
     print(array_seq)            # array_seq: [1, 3, 3, 4]
     array_seq.insert_first(3)
     print(array_seq)            # array_seq: [3, 1, 3, 3, 4]
+    array_seq.delete_first()
+    print(array_seq)            # array_seq: [1, 3, 3, 4]
 
     for e in array_seq :
         print(e)
+
+    # LinkedListSequence simple tests
+
+    linked_seq : LinkedListSequence[int] = LinkedListSequence()
+    linked_seq.build([1, 2, 3])
+    print(linked_seq.get_at(1)) # 2, linked_seq: 1 → 2 → 3 → None
+    linked_seq.set_at(1, 9)
+    print(linked_seq)           # linked_seq: 1 → 9 → 3 → None
+    linked_seq.insert_at(1, 5)
+    print(linked_seq)           # linked_seq: 1 → 5 → 9 → 3 → None
+    linked_seq.insert_first(2)
+    print(linked_seq)           # linked_seq: 2 → 1 → 5 → 9 → 3 → None
+    linked_seq.delete_at(1)
+    print(linked_seq)           # linked_seq: 2 → 5 → 9 → 3 → None
+    linked_seq.delete_first()
+    print(linked_seq)           # linked_seq: 5 → 9 → 3 → None

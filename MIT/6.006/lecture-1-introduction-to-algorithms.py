@@ -1,4 +1,5 @@
-from typing import TypeVar, Generic
+from __future__ import annotations
+from typing import TypeVar, Generic, Optional
 
 T = TypeVar("T")
 
@@ -13,7 +14,7 @@ T = TypeVar("T")
 
 class StaticArray(Generic[T]) :
     def __init__(self, n: int) -> None :
-       self.data : list[T | None] = [None] * n
+       self.data : list[Optional[T]] = [None] * n
 
     def get_at(self, i: int) -> T :
         if not (0 <= i < len(self.data)) : raise IndexError
@@ -23,7 +24,7 @@ class StaticArray(Generic[T]) :
         if not (0 <= i < len(self.data)) : raise IndexError
         self.data[i] = x
 
-def birthday_match(students: list[tuple[str, str]]) -> tuple[str] | None :
+def birthday_match(students: list[tuple[str, str]]) -> Optional[tuple[str]] :
     """
     Find a pair of students with the same birthday
 
