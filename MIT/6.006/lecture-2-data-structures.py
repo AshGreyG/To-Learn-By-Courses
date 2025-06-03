@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import TypeVar, Generic, Optional
+from typing_extensions import override
 
 T = TypeVar("T")
 
@@ -275,6 +276,123 @@ class LinkedListSequence(Generic[T]) :
     def insert_last(self, x : T) -> None : self.insert_at(len(self), x)
     def delete_last(self) -> T :           return self.delete_at(len(self) - 1)
 
+# The array's dynamic sequence operations require linear time with respect to the
+# length of array A. Sometimes appending to the end of a Python List requires O(n)
+# time to transfer the array to a larger allocation in memory, so sometimes appending
+# to a Python List takes linear time. 
+
+# However, allocating additional space in the right way can guarantee that any
+# sequence of n insertions only takes at most O(n) time, and insertion will take
+# O(1) time per insertion **on average**. We call this asymptotic running time
+# **amortized constant time**
+
+# A typical implementing of a dynamic array will allocate **double** the amount of
+# space needed to store the current array, sometimes referred to as **table doubling**.
+# Python Lists allocate additional space according to the following formula
+
+# new_allocated = (newsize >> 3) + (newsize < 9 ? 3 : 6)
+
+# The additional allocation is roughly one eight of the size of the array being
+# appended (bit shifting the size to the right by 3 is equivalent to floored
+# division by 8).
+
+class DynamicArraySequence(ArraySequence[T]) :
+    @override
+    def __init__(self, r : int = 2) -> None :
+        super().__init__()
+        self.size : int = 0
+        self.r : int = r
+        self._compute_bounds()
+
+    @override
+    def build(self, X : list[T]) -> None :  # O(n)
+        for a in X :
+            self.insert_last(a)
+
+    def _compute_bounds(self) -> None : # O(1)
+        """
+        This method computes the upper and lower bounds of re-allocating operation, 
+        according to the length of `A`.
+        """
+        self.upper : int = len(self.A)
+        self.lower : int = len(self.A) // (self.r * self.r)
+        
+    def _resize(self, n : int) -> None :    # O(1) or O(n)
+        """
+        This method resizes the array to allocate new memory.
+
+        Args:
+            n: The size that array needs to allocate to.
+        """
+        if (self.lower < n < self.upper) : return
+        m = max(n, 1) * self.r
+
+        # default r is 2, which is the table doubling
+
+        A : Optional[T] = [None] * m
+        self._copy_forward(0, self.size, A, 0)
+        self.A = A
+        self._compute_bounds()
+
+    @override
+    def insert_last(self, x : Optional[T]) -> None :  # O(1)a, a is a constant
+        """
+        This method inserts the element at the last index of array.
+
+        Args:
+            x: The inserted element, which can be `None` (used in `insert_at` method)
+        """
+        self._resize(self.size + 1)
+        self.A[self.size] = x
+        self.size += 1
+
+    @override
+    def delete_last(self) -> T :    # O(1)a, a is a constant
+        """
+        This method deletes the last element of array.
+
+        Returns:
+            The last element of the array.
+        """
+        x = self.A[self.size - 1]
+        self.A[self.size - 1] = None
+        self.size -= 1
+        self._resize(self.size)
+        return x
+
+    @override
+    def insert_at(self, i : int, x : T) -> None :   # O(n)
+        """
+        This method inserts element `x` at index `i`.
+
+        Args:
+            i: The insert index, which is also the index of new inserted element in
+                new array.
+            x: New inserted element.
+        """
+        self.insert_last(None)
+        self._copy_backward(i, self.size - (i + 1), self.A, i + 1)
+        self.A[i] = x
+
+    @override
+    def delete_at(self, i : int) -> T :
+        """
+        This method deletes the element at index `i`.
+
+        Args:
+            i: The index of deleted element.
+        """
+        x = self.A[i]
+        self._copy_forward(i + 1, self.size - (i + 1), self.A, i)
+        self.delete_last()
+        return x
+
+    @override
+    def insert_first(self, x : T) -> None : self.insert_at(0, x)
+
+    @override
+    def delete_first(self) -> T : return self.delete_at(0)
+
 if __name__ == "__main__" :
     # ArraySequence simple tests
 
@@ -310,3 +428,14 @@ if __name__ == "__main__" :
     print(linked_seq)           # linked_seq: 2 → 5 → 9 → 3 → None
     linked_seq.delete_first()
     print(linked_seq)           # linked_seq: 5 → 9 → 3 → None
+
+    # DynamicArraySequence simple tests
+
+    dyn_seq : DynamicArraySequence[int] = DynamicArraySequence()
+    dyn_seq.build([1, 3, 4, 2])
+    print(dyn_seq.get_at(2))    # 4 dyn_seq: [1, 3, 4, 2]
+    dyn_seq.set_at(1, 8)
+    print(dyn_seq)  # dyn_seq: [1, 8, 4, 2, None, None, None, None]
+    dyn_seq.delete_last()
+    dyn_seq.delete_last()
+    print(dyn_seq)  # dyn_seq: [1, 8, None, None]
