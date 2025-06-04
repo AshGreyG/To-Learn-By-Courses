@@ -2,6 +2,7 @@
 
 ## 🪜 Contents
 
-| Chapter                               |                     Notes                      | Homework |
-| :------------------------------------ | :--------------------------------------------: | :------: |
+| Chapter                               | Notes                                           | Homework |
+| :------------------------------------ | :---------------------------------------------- | :------: |
 | Lecture 1: Algorithms and Computation | [✅](./lecture-1-introduction-to-algorithms.py) |    /     |
+| Lecture 2: Data Structure             | [✅](./lecture-2-data-structures.py)            |    /     |
