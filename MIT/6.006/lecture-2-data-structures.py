@@ -1,5 +1,11 @@
 from __future__ import annotations
-from typing import TypeVar, Generic, Optional
+from typing import (
+    TypeVar,
+    Generic,
+    Optional,
+    Union,
+    Literal
+)
 from typing_extensions import override
 
 T = TypeVar("T")
@@ -180,7 +186,7 @@ class LinkedListNode(Generic[T]) :
 # It's easy to add an item after another item in the list, simply by changing
 # some addresses. Adding a new item at the front (head) of the list takes
 # O(1) time. However, the only way to find the i-th item in the sequence is
-# to step through the items one-by-one
+# to step through the items one-by-one.
 
 class LinkedListSequence(Generic[T]) :
     def __init__(self) -> None :
@@ -393,6 +399,240 @@ class DynamicArraySequence(ArraySequence[T]) :
     @override
     def delete_first(self) -> T : return self.delete_at(0)
 
+K = TypeVar("K")
+V = TypeVar("V")
+
+class SetPair(Generic[K, V]) :
+    def __init__(self, k : k, v : V) -> None :
+        self.key = k
+        self.value = v
+
+    def __str__(self) -> str :
+        return "({}, {})".format(self.key, self.value)
+
+class Set(Generic[K, V]) :
+    def __init__(self) -> None : 
+        self.KV : DynamicArraySequence[SetPair[K, V]] = DynamicArraySequence()
+
+    def __len__(self) -> int :
+        return len(self.KV)
+
+    def __str__(self) -> str :
+        result = "{ "
+        for kv in self.KV :
+            if kv != None :
+                result += str(kv) + ", "
+        result += " }"
+        return result
+
+    def build(self, X : list[tuple[K, V]]) -> None :
+        """
+        This method builds the `Set` from a list of k-v tuples, it first maps
+        `tuple[K, V]` to `SetPair[K, V]`
+
+        Args:
+            X: A list of k-v tuples, which will be mapped to `SetPair[K, V]`
+        """
+        self.KV.build([SetPair(tup[0], tup[1]) for tup in X])
+
+    def insert(self, x : tuple[K, V]) -> None :
+        """
+        This method inserts the k-v tuple to set, if the key exists, then 
+        overwrites the value, if the key doesn't exist, append the pair at
+        the end of the array.
+
+        Args:
+            x: The element to insert to the set.
+        """
+        pair : SetPair[K, V] = SetPair(x[0], x[1])
+        for i in range(len(self.KV)) :
+            if self.KV.get_at(i).key == pair.key :
+                self.KV.set_at(i, pair)
+                return
+        self.KV.insert_last(pair)
+
+    def find(
+        self, 
+        k : K,
+        mode : Literal["tuple", "set_pair"] = "tuple"
+    ) -> Union[SetPair[K, V], tuple[K, V], None] :
+        """
+        This method returns the stored item with key `k`.
+
+        Args:
+            k: The key of item you want to find.
+            mode: The mode of returned item, if `mode` is `"tuple"`, then the
+                returned item will be a tuple, if `mode` is `"set_pair"` then
+                the returned item will be a `SetPair`
+        """
+        
+        match mode :
+            case "tuple" :
+                for kv in self.KV :
+                    if kv.key == k :
+                        return (kv.key, kv.value)
+            case "set_pair" :
+                for kv in self.KV :
+                    if kv.key == k :
+                        return kv
+
+    def delete(self, k : K) -> None :
+        """
+        This method deletes the item whose key is `k` in set.
+
+        Args:
+            k: The key of item to be deleted.
+        """
+        for i in range(len(self.KV)) :
+            if self.KV.get_at(i).key == k :
+                self.KV.delete_at(i)
+                return
+
+    def iter_ord(
+        self, 
+        mode : Literal["tuple", "set_pair"] = "tuple"
+    ) -> list[Union[SetPair[K, V], tuple[K, V]]] :
+        """
+        This method returns the stored items one-by-one in key order.
+
+        Args:
+            mode: The mode of returned list, if `mode` is `"tuple"`, then
+                the returned list will be a list of tuple, if `mode` is `"set_pair"`,
+                then the returned list will be a list of `SetPair`.
+        Returns:
+            The list of stored items one-by-one in key order.
+        """
+
+        match mode :
+            case "tuple" :
+                result : list[tuple[K, V]] = [(kv.key, kv.value) for kv in self.KV if kv != None]
+                return sorted(result, key = lambda x : x[0])
+            case "set_pair" :
+                result : list[SetPair[K, V]] = [SetPair(kv.key, kv.value) for kv in self.KV if kv != None]
+                return sorted(result, key = lambda x : x.key)
+
+    def find_min(
+        self,
+        mode : Literal["tuple", "set_pair"] = "tuple"
+    ) -> Union[SetPair[K, V], tuple[K, V]] :
+        """
+        This method returns the minimal item in the set.
+
+        Args:
+            mode: The mode of returned item, if `mode` is `"tuple"`, then the
+                returned item will be a tuple, if `mode` is `"set_pair"` then
+                the returned item will be a `SetPair`
+        Returns:
+            The minimal item.
+        """
+
+        match mode :
+            case "tuple" :
+                tuple_list : list[tuple[K, V]] = [(kv.key, kv.value) for kv in self.KV if kv != None]
+                result : tuple[K, V] = min(tuple_list, key = lambda x : x[0])
+                return result
+            case "set_pair" :
+                pair_list : list[SetPair[K, V]] = [kv for kv in self.KV if kv != None]
+                result : SetPair[K, V] = min(pair_list, key = lambda x : x.key)
+                return result
+
+    def find_max(
+        self,
+        mode : Literal["tuple", "set_pair"] = "tuple"
+    ) -> Union[SetPair[K, V], tuple[K, V]] :
+        """
+        This method returns the maximal item in the set.
+
+        Args:
+            mode: The mode of returned item, if `mode` is `"tuple"`, then the
+                returned item will be a tuple, if `mode` is `"set_pair"` then
+                the returned item will be a `SetPair`
+        Returns:
+            The maximal item.
+        """
+
+        match mode :
+            case "tuple" :
+                tuple_list : list[tuple[K, V]] = [(kv.key, kv.value) for kv in self.KV if kv != None]
+                result : tuple[K, V] = max(tuple_list, key = lambda x : x[0])
+                return result
+            case "set_pair" :
+                pair_list : list[SetPair[K, V]] = [kv for kv in self.KV if kv != None]
+                result : SetPair[K, V] = max(pair_list, key = lambda x : x.key)
+                return result
+
+    def _find_direction(
+        self,
+        k : K,
+        mode : Literal["tuple", "set_pair"] = "tuple",
+        reverse : bool = False
+    ) -> Union[SetPair[K, V], tuple[K, V], None] :
+        """
+        This method returns the stored item with smallest key larger than k.
+
+        Args:
+            k: The key of item you want to find.
+            mode: The mode of returned item, if `mode` is `"tuple"`, then the
+                returned item will be a tuple, if `mode` is `"set_pair"` then
+                the returned item will be a `SetPair`
+            reverse: It controls whether the function finds the next item or
+                the previous item.
+        """
+
+        match mode :
+            case "tuple" :
+                tuple_list : list[tuple[K, V]] = [(kv.key, kv.value) for kv in self.KV if kv != None]
+                tuple_result = sorted(tuple_list, key = lambda x : x[0], reverse = reverse)
+                for index, kv_tuple in enumerate(tuple_result) :
+                    if kv_tuple[0] == k and index < len(tuple_result) - 1 :
+                        return tuple_list[index + 1]
+                    elif index == len(tuple_result) - 1 :
+                        return None
+                return None
+            case "set_pair" :
+                pair_list : list[SetPair[K, V]] = [kv for kv in self.KV if kv != None]
+                pair_result = sorted(pair_list, key = lambda x : x.key, reverse = reverse)
+                for index, kv_pair in enumerate(pair_result) :
+                    if kv_pair.key == k and index < len(pair_result) - 1 :
+                        return pair_list[index + 1]
+                    elif index == len(pair_result) - 1 :
+                        return None
+
+    def find_next(
+        self,
+        k : K,
+        mode : Literal["tuple", "set_pair"] = "tuple"
+    ) -> Union[SetPair[K, V], tuple[K, V], None] :
+        """
+        This method returns the stored item with smallest key larger than k.
+
+        Args:
+            k: The key of relative item.
+            mode: The mode of returned item, if `mode` is `"tuple"`, then the
+                returned item will be a tuple, if `mode` is `"set_pair"` then
+                the returned item will be a `SetPair`
+        """
+
+        return self._find_direction(k, mode, reverse = False)
+
+    def find_prev(
+        self,
+        k : K,
+        mode : Literal["tuple", "set_pair"] = "tuple"
+    ) -> Union[SetPair[K, V], tuple[K, V], None] :
+        """
+        This method returns the stored item with largest key smaller than k.
+
+        Args:
+            k: The key of relative item.
+            mode: The mode of returned item, if `mode` is `"tuple"`, then the
+                returned item will be a tuple, if `mode` is `"set_pair"` then
+                the returned item will be a `SetPair`
+        """
+
+        return self._find_direction(k, mode, reverse = True)
+
+
 if __name__ == "__main__" :
     # ArraySequence simple tests
 
@@ -439,3 +679,32 @@ if __name__ == "__main__" :
     dyn_seq.delete_last()
     dyn_seq.delete_last()
     print(dyn_seq)  # dyn_seq: [1, 8, None, None]
+
+    # Set simple tests
+
+    dyn_set : Set[str, int] = Set()
+    dyn_set.build([("ashgrey", 21), ("huaier", 19), ("rust", 13)])
+    print(dyn_set)  # { (ashgrey, 21), (huaier, 19), (rust, 13),  }
+    dyn_set.insert(("kotlin", 14))
+    print(dyn_set)  # { (ashgrey, 21), (huaier, 19), (rust, 13), (kotlin, 14),  }
+    dyn_set.delete("rust")
+    print(dyn_set)  # { (ashgrey, 21), (huaier, 19), (kotlin, 14),  }
+    dyn_set.insert(("ashgrey", 22))
+    print(dyn_set)  # { (ashgrey, 22), (huaier, 19), (kotlin, 14),  }
+    print("Find: " + str(dyn_set.find("ashgrey")))  # ('ashgrey', 21)
+    print("Find: " + str(dyn_set.find("kotlin", mode = "set_pair")))  # (kotlin, 14)
+    print(dyn_set.iter_ord())
+
+    for kv in dyn_set.iter_ord(mode = "set_pair") :
+        print("({}, {})".format(kv.key, kv.value))
+
+    print(dyn_set.find_min())
+    print(dyn_set.find_min("set_pair"))
+    print(dyn_set.find_max())
+    print(dyn_set.find_max("set_pair"))
+    print(dyn_set.find_next("ashgrey")) # ('huaier', 19)
+    print(dyn_set.find_next("huaier", "set_pair"))  # (kotlin, 14)
+    print(dyn_set.find_next("kotlin", "set_pair"))  # None
+    print(dyn_set.find_prev("ashgrey")) # None
+    print(dyn_set.find_prev("huaier"))  # ('kotlin', 14)
+    print(dyn_set.find_prev("kotlin", "set_pair"))  # (huaier, 19)
