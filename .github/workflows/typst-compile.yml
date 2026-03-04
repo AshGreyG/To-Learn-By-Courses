@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Typst
         run: |
-          curl -L https://github.com/Typst/typst/releases/download-v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz \
+          curl -L https://github.com/typst/typst/releases/download/v0.14.2/typst-x86_64-unknown-linux-musl.tar.xz \
             -o typst.tar.xz
           tar xf typst.tar.xz
           sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
