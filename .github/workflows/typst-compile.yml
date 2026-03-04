@@ -1,0 +1,82 @@
+name: Compile Typst to PDF
+
+on:
+  push:
+    branches: [main, master]
+    paths: '**.typ'
+  pull_request:
+    paths: '**.typ'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Typst
+        run: |
+          curl -L https://github.com/typst/typst/releases/download/v0.14.2/typst-x86_64-unknown-linux-musl.tar.xz \
+            -o typst.tar.xz
+          tar xf typst.tar.xz
+          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+          typst --version
+
+      - name: Find all .typ files
+        id: find-files
+        run: |
+          # Find all .typ files and store as JSON array
+          FILES=$(find . -name "*.typ" -type f | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "Found files: $FILES"
+
+      - name: Compile .typ files to PDF
+        run: |
+          mkdir -p output
+          for file in $(find . -name "*.typ" -type f); do
+            echo "Compiling $file..."
+            filename=$(basename "$file" .typ)
+            typst compile "$file" --format pdf -o "output/${filename}.pdf" || echo "Failed to compile $file"
+          done
+          ls -la output/
+
+      - name: Create Release (if on main/master)
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Generate version/tag from date and commit hash
+          VERSION="typst-$(date +%Y%m%d)-$(git rev-parse --short HEAD)"
+          TAG_NAME="v$VERSION"
+
+          # Check if tag exists
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "Tag $TAG_NAME already exists, skipping release creation"
+            # Update existing release
+            gh release delete "$TAG_NAME" -y || true
+          fi
+
+          # Create tag
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME" || true
+
+          # Create release and upload PDFs
+          gh release create "$TAG_NAME" \
+            --title="Typst PDFs - $VERSION" \
+            --notes="Auto-generated PDFs from Typst sources
+
+          Built from commit: ${{ github.sha }}
+          Branch: ${{ github.ref_name }}
+          " \
+            output/*.pdf
+
+      - name: Upload PDFs as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: typst-pdfs
+          path: output/*.pdf
+          retention-days: 30
