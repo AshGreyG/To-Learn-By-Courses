@@ -7,6 +7,12 @@ on:
   pull_request:
     paths: '**.typ'
   workflow_dispatch:
+    inputs:
+      create_release:
+        description: 'Create GitHub release with PDFs'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -26,57 +32,87 @@ jobs:
           sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
           typst --version
 
-      - name: Find all .typ files
+      - name: List all .typ files
         id: find-files
         run: |
-          # Find all .typ files and store as JSON array
-          FILES=$(find . -name "*.typ" -type f | jq -R -s -c 'split("\n") | map(select(length > 0))')
-          echo "files=$FILES" >> $GITHUB_OUTPUT
-          echo "Found files: $FILES"
+          echo "Found .typ files:"
+          find . -name "*.typ" -type f
 
       - name: Compile .typ files to PDF
         run: |
           mkdir -p output
+          FAILED=0
+          SUCCESS=0
           for file in $(find . -name "*.typ" -type f); do
             echo "Compiling $file..."
             filename=$(basename "$file" .typ)
-            typst compile "$file" --format pdf -o "output/${filename}.pdf" || echo "Failed to compile $file"
+            # Correct syntax: typst compile <INPUT> [OUTPUT]
+            if typst compile "$file" "output/${filename}.pdf" 2>&1; then
+              echo "✓ Successfully compiled: $file"
+              SUCCESS=$((SUCCESS + 1))
+            else
+              echo "✗ Failed to compile: $file"
+              FAILED=$((FAILED + 1))
+            fi
           done
-          ls -la output/
+          echo ""
+          echo "=== Compilation Summary ==="
+          echo "Successful: $SUCCESS"
+          echo "Failed: $FAILED"
+          ls -la output/ || echo "No PDFs generated"
+          if [ $FAILED -gt 0 ]; then
+            echo "::warning::Some Typst files failed to compile"
+          fi
 
-      - name: Create Release (if on main/master)
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+      - name: Create Release (manual only)
+        if: github.event_name == 'workflow_dispatch' && inputs.create_release == true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Generate version/tag from date and commit hash
-          VERSION="typst-$(date +%Y%m%d)-$(git rev-parse --short HEAD)"
-          TAG_NAME="v$VERSION"
-
-          # Check if tag exists
-          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
-            echo "Tag $TAG_NAME already exists, skipping release creation"
-            # Update existing release
-            gh release delete "$TAG_NAME" -y || true
+          # Check if there are any PDFs to upload
+          if ! ls output/*.pdf 1> /dev/null 2>&1; then
+            echo "No PDFs found in output/ directory. Skipping release creation."
+            exit 1
           fi
 
-          # Create tag
-          git tag "$TAG_NAME"
-          git push origin "$TAG_NAME" || true
+          # Use a rolling 'latest' tag instead of creating new ones each time
+          TAG_NAME="typst-latest"
 
-          # Create release and upload PDFs
+          # Delete old release and tag if they exist
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            echo "Deleting existing release: $TAG_NAME"
+            gh release delete "$TAG_NAME" -y || true
+          fi
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            git tag -d "$TAG_NAME" || true
+            git push origin ":refs/tags/$TAG_NAME" || true
+          fi
+
+          # Create new tag
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
+
+          # Create release with timestamp in notes
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           gh release create "$TAG_NAME" \
-            --title="Typst PDFs - $VERSION" \
+            --title="Typst PDFs - Built $TIMESTAMP" \
             --notes="Auto-generated PDFs from Typst sources
 
-          Built from commit: ${{ github.sha }}
+          Built from: ${{ github.sha }}
           Branch: ${{ github.ref_name }}
+          Timestamp: $TIMESTAMP
+
+          *This is a rolling release that updates with each manual run.*
           " \
             output/*.pdf
 
+          echo "Release created: $TAG_NAME"
+
       - name: Upload PDFs as artifacts
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: typst-pdfs
           path: output/*.pdf
+          if-no-files-found: warn
           retention-days: 30
