@@ -46,7 +46,14 @@ class Sort(Generic[T]) :    # This provides the generic.
     # worst case.
 
     # Both insertion sort and selection sort are **in-place** algorithms,
-    # meaning 
+    # meaning they can each be implemented using at most a constant amount of
+    # additional space. The only operations performed on the array are comparisons
+    # and swaps between pairs of elements. Insertion sort is **stable**, meaning
+    # that items having the same value will appear in the sort in the same order
+    # as they appeared in the input array.
+
+    # The implementation of selection sort is not stable. The input [2, 1, 1'] would
+    # produce the output [1', 1, 2]
 
 if __name__ == "__main__" :
     test_array = [3, 2, 10, 1, 9]
