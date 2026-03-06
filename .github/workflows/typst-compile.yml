@@ -64,8 +64,7 @@ jobs:
             echo "::warning::Some Typst files failed to compile"
           fi
 
-      - name: Create Release (manual only)
-        if: github.event_name == 'workflow_dispatch' && inputs.create_release == true
+      - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
