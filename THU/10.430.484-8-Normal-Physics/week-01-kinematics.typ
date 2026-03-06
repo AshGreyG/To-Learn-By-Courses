@@ -140,3 +140,33 @@
   So
 
   $ h_"ground" = v_"init" t + 1 / 2 g t^2 = 2.066 "m" $
+
+#linebreak()
+
+- *1.26 It was once reported that the United States used Early Warning Aircraft
+  to help Israel's "Patriot" missile system defend against Iraqi missile attacks.
+  An Early Warning Aircraft is cruising horizontally in a west wind (blowing from
+  West to East) at a speed of $150 "km/h"$ over Iraq. The nose of the aircraft
+  is pointed due North, and its airspeed (speed relative to the air) is
+  $750 "km/h"$. A radar operator on the plane discovers a missile flying
+  horizontally at a speed of $5750 "km/h"$ relative to the aircraft in a
+  direction $19.5°$ South of West. Find the velocity and direction of the missile
+  relative to the ground. (This signal would be sent to a domestic intelligence
+  center in the U.S., analyzed, and then sent to relevant Israeli agencies to
+  allow the "Patriot" missile system to defend in time).*
+
+- Answer: The velocity of aircraft to ground is $v_"ag" = sqrt(750^2 + 150^2)
+  "km/h" ≈ 764.85 "km/h"$. The relative angle between aircraft and missile is
+  $109.5°$, so velocity of missile to ground is
+
+  $ bold(v)_"mg" = bold(v)_"ma" + bold(v)_"ag" $
+
+  so
+
+  $
+    v_"mg" & = sqrt((v_("ma",x) + v_("ag",x))^2 + (v_("ma",y) + v_("ag",y))^2) \
+      & = sqrt((-5270.3)^2 + (-1169.2)^2) \
+      & = 5398.5 "km/h"
+  $
+
+  and the angle $ϕ$ West of South is $arctan(1169.2 \/ 5270.3) ≈ 12.5° $.
