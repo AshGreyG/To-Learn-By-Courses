@@ -33,10 +33,10 @@
   (3) If we denote $sans("heads")$ as $H$ and $sans("tails")$ as $T$ then the
   sample space is
 
-  $ Ω = {H, (H,T), (H,T,T), ⋯} $
+  $ Ω = {H, (T,H), (T,T,H), ⋯} $
 
   we can also define the outcomes by the *number of tosses* ($n$) required to
-  get the first head, then the sample space is ${0,1,2,3,⋯}$ and that's $ℕ$.
+  get the first head, then the sample space is ${1,2,3,⋯}$ (i.e., $ℕ \\ {0}$).
 
   (4) If we denote red as $r$, black as $b$ and white as $w$, so the sample space
   is
@@ -54,7 +54,9 @@
   coin once more and the experiment stops. So, what is the sample space $Ω$ for
   this experiment?*
 
-- Answer: The sample space $Ω$ is ${Z,(F,Z),(F,F,Z),⋯}$, it's same with 1.(3).
+- Answer: The sample space $Ω$ is ${(Z,1), (Z,2), (Z,3), (Z,4), (Z,5), (Z,6), (F,Z), (F,F)}$.
+  If the first flip is heads ($Z$), we roll a die (1-6). If the first flip is tails ($F$),
+  we flip once more, which can be either $Z$ or $F$.
 
 #linebreak()
 
@@ -76,10 +78,11 @@
   (2) $Ω_2 = (A ∩ overline(B) ∩ overline(C)) ∪ (overline(A) ∩ B ∩ overline(C))
   ∪ (overline(A) ∩ overline(B) ∩ C) ∪ (overline(A) ∩ overline(B) ∩ overline(C))$;
 
-  (3) $Ω_3 = (A ∩ B ∩ overline(C)) ∪ (overline(A) ∩ B ∩ C)
-  ∩ (A ∩ overline(B) ∩ C) ∪ Ω_2$;
+  (3) $Ω_3 = overline(A ∩ B ∩ C)$ (complement of "all three occur"), or equivalently
+  $(A ∩ B ∩ overline(C)) ∪ (overline(A) ∩ B ∩ overline(C)) ∪ (overline(A) ∩ overline(B) ∩ C) ∪ Ω_2$;
 
-  (4) $Ω_4 = (A ∩ B ∩ 3) ∪ (Ω_3 \\ Ω_2)$
+  (4) $Ω_4 = (A ∩ B ∩ C) ∪ (A ∩ B ∩ overline(C)) ∪ (overline(A) ∩ B ∩ C) ∪ (A ∩ overline(B) ∩ C)$,
+  which is "all three occur" plus "exactly two occur".
 
 #linebreak()
 
@@ -91,7 +94,8 @@
 
   (3) $A - B = A$.
 
-- Answer: (1) $B ⊆ A$; (2) $A ⊆ B$; (3) $B ⊆ A$.
+- Answer: (1) $B ⊆ A$; (2) $A ⊆ B$; (3) $A ∩ B = ∅$ (A and B are disjoint,
+  since removing B from A leaves A only when A and B have no common elements).
 
 #linebreak()
 
