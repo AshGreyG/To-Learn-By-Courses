@@ -123,16 +123,25 @@
   conditions that $P$ must satisfy.*
 
   *Definition:* A probability space is a triplet $(Omega, cal(F), P)$ where:
+
   - *$Omega$* is the sample space (the set of all possible outcomes).
+
   - *$cal(F)$* is a $sigma$-algebra on $Omega$, which must satisfy:
+
     1. $Omega in cal(F)$ (The certain event is included).
+
     2. If $A in cal(F)$, then $A^c in cal(F)$ (Closed under complements).
+
     3. If $A_1, A_2, ... in cal(F)$, then $union.big_(i=1)^infinity A_i in cal(F)$
       (Closed under countable unions).
+
   - *$P$* is a probability measure $P: cal(F) -> [0, 1]$ satisfying Kolmogorov's
     Axioms:
+
     1. *Non-negativity:* $P(A) >= 0$ for all $A in cal(F)$.
+
     2. *Normalization:* $P(Omega) = 1$.
+
     3. *Countable Additivity:* For any sequence of pairwise disjoint events
       $A_1, A_2, ...$, $P(union.big_(i=1)^infinity A_i) = sum_(i=1)^infinity P(A_i)$.
 
@@ -144,8 +153,11 @@
   *Proof:*
   The Cantor Set $C$ is formed by removing open middle-thirds from the interval
   $[0, 1]$. Let $m(R)$ be the total length of the intervals removed:
+
   - In step 1, we remove $1$ interval of length $1/3$.
+
   - In step 2, we remove $2$ intervals of length $1/9$.
+
   - In step $n$, we remove $2^(n-1)$ intervals of length $(1/3)^n$.
 
   The total length removed is:

@@ -85,6 +85,8 @@ jobs:
           fi
           # Delete remote tag if it exists (ignore errors if it doesn't)
           git push origin ":refs/tags/$TAG_NAME" || true
+          # Delete local tag if it exists (ignore errors if it doesn't)
+          git tag -d "$TAG_NAME" || true
 
           # Create new tag and force push to overwrite
           git tag "$TAG_NAME"
