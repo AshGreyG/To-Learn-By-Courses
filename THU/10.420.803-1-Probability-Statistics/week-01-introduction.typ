@@ -8,7 +8,7 @@
   = Week-1 Homework of Probability and Statistics
 ])
 
-= 1 Chapter 1
+= 1 Chapter 1.1
 
 - *1. Write the sample space for the following random experiments:*
 
