@@ -58,11 +58,11 @@
 
   (2) There are $4 × binom(13, 4)$ to select 4 same suit cards from $52$ cards,
 
-  $ p_2 = (4 × binom(13, 4)) / binom(52, 4) = 2860 / 270725 = 22 / 21313 $
+  $ p_2 = (4 × binom(13, 4)) / binom(52, 4) = 2860 / 270725 = 44 / 4165 $
 
   (3) There are $13^4$ methods to select four different suits cards,
 
-  $ p_3 = 13^4 / binom(52, 4) = 28561 / 270725 = 2179 / 20825 $
+  $ p_3 = 13^4 / binom(52, 4) = 28561 / 270725 = 2197 / 20825 $
 
   (4) Four cards can be black or red. There are $2 × binom(26, 4)$ methods to
   select four same color cards:
@@ -147,11 +147,11 @@
 - Answer: we can consider the opposite of drawing a black ball on the $k$-th
   draw, drawing a white ball on the $k$-th draw, and the probability is
 
-  $ p_"white" = ((n - 1) / n)^(k-1) $
+  $ p_"white" = ((n - 1) / n)^(k-1) 1/n $
 
   so the probability of drawing a black ball on the $k$-th draw is
 
-  $ p_"black" = 1 - ((n - 1) / n)^(k-1) $
+  $ p_"black" = 1 - ((n - 1) / n)^(k-1) 1/n $
 
 #linebreak()
 
