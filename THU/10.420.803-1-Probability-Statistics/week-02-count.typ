@@ -137,3 +137,99 @@
   $ 𝔼[X] = 2 × p + 0 × (1 - p) = 2p = (2(a + b + c)) / (π d) $
 
   so that $p = (a + b + c)\/π d$.
+
+= 2 Chapter 1.3
+
+- *9. A bag contains $n−1$ black balls and $1$ white ball. Each time, a ball is
+  randomly drawn from the bag and then replaced with a black ball. What is the
+  probability of drawing a black ball on the $k$-th draw?*
+
+- Answer: we can consider the opposite of drawing a black ball on the $k$-th
+  draw, drawing a white ball on the $k$-th draw, and the probability is
+
+  $ p_"white" = ((n - 1) / n)^(k-1) $
+
+  so the probability of drawing a black ball on the $k$-th draw is
+
+  $ p_"black" = 1 - ((n - 1) / n)^(k-1) $
+
+#linebreak()
+
+- *13. There are 5 students living in a dormitory. Find the probability that at
+  least 2 of them were born in the same month.*
+
+- Answer: we still can consider the opposite of at least 2 of them were born in
+  the same month, none of them were bone in same month. And the probability is
+
+  $ p_"none" = P(12, 5) / 12^5 = 55 / 144 $
+
+  so the probability of at least 2 of them were born in the same month is:
+
+  $ p = 1 - p_"none" = 89 / 144 $
+
+#linebreak()
+
+- *19. For any events $A,B,C$, prove*:
+
+  (1) $P(A B) + P(A C) − P(B C) ≤ P(A)$
+
+  (2) $P(A B) + P(A C) + P(B C) ≥ P(A) + P(B) + P(C) − 1$
+
+- Answer:
+
+  (1) We know that $P(A) ≥ P(A ∩ (B ∪ C))$ because the intersection is a subset
+  of $A$. We can use the inclusion-exclusion principle for two events ($B$ and
+  $C$) inside $A$:
+
+  $ P(A ∩ (B ∪ C)) = P(A B ∪ A C) = P(A B) + P(A C) - P(A B C) $
+
+  since $A B C ⊆ B C$, we know that $P(A B C) ≤ P(B C)$, this means that
+  $-P(A B C) ≥ -P(B C)$, hence we have $P(A) ≥ P(A ∩ (B ∪ C)) = P(A B) + P(A C)
+  - P(A B C) ≥ P(A B) + P(A C) - P(B C)$.
+
+  (2) We need to prove that $P(A) + P(B) + P(C) - P(A B) - P(A C) - P(B C) ≤ 1$,
+  we know that $1 ≥ P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(A B) - P(A C) - P(B C)
+  + P(A B C) ≥ P(A) + P(B) + P(C) - P(A B) - P(A C) - P(B C)$.
+
+#linebreak()
+
+- *21. Suppose the probabilities of events $A, B$, and $C$ are all $1\/2$, and
+  $P(A B C) = P(overline(A) ∩ overline(B) ∩ overline(C))$. Prove:*
+
+  $ 2 P(A B C) = P(A B) + P(A C) + P(B C) - 1/2 $
+
+- Answer: we know that $P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(A B) - P(A C)
+  - P(B C) + P(A B C)$ and $P(overline(A) ∪ overline(B) ∪ overline(C)) =
+  P(overline(A)) + P(overline(B)) + P(overline(C)) - P(overline(A) ∩ overline(B))
+  - P(overline(A) ∩ overline(C)) - P(overline(B) ∩ overline(C)) + P(overline(A)
+  ∩ overline(B) ∩ overline(C) )$.
+
+  And $P(A ∪ B ∪ C) = P(overline(overline(A ∪ B ∪ C))) = 1 - P(overline(A) ∩
+  overline(B) ∩ overline(C))$, thus
+
+  $ P(A B C) + P(overline(A) ∩ overline(B) ∩ overline(C)) & = P(A B) + P(A C)
+  + P(B C) \
+  & - P(A) - P(B) - P(C) \
+  & = P(A B) + P(A C) + P(B C) - 1/2 $
+
+#linebreak()
+
+- *23. Prove:*
+
+$ abs(P(A B) - P(A)P(B)) ≤ 1 / 4 $
+
+- Answer: we know that $P(A B) = P(A) P(B|A)$. So we can rewrite the expression
+  as $abs(P(A) P(B|A) - P(A)P(B))$, and we can simplify it to $abs(P(A)⋅(P(B|A)
+  - P(B)))$
+
+  $ P(B) = P(A B) + P(overline(A) B) & = P(B|A)P(A) + P(B|overline(A))P(overline(A)) $
+
+  so that
+
+  $  & abs(P(A)⋅(P(B|A) - P(B|A)⋅P(A) - P(B|overline(A))⋅P(overline(A)))) \
+   = & abs(P(A)⋅(P(B|A)⋅P(overline(A)) - P(B|overline(A))⋅P(overline(A)))) \
+   = & P(A)P(overline(A))⋅abs(P(B|A)-P(B|overline(A))) $
+
+  we know that the maximum of expression $x(1-x)$ is $1\/4$ and the equality
+  happens at $x = 1\/2$. And $abs(P(B|A)-P(B|overline(A))) ≤ 1$, so the inequality
+  in the question holds.
