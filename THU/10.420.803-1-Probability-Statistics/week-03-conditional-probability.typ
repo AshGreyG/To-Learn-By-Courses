@@ -104,7 +104,7 @@
 
   $ P(C) = P(M)⋅P(C|M) + P(W)⋅P(C|W) ≈ 0.0268 $
 
-  according to Baye's theorem, we have
+  according to Bayes' theorem, we have
 
   $ P(M|C) = (P(C|M)⋅P(M)) / P(C) = 95.445 % $
 
