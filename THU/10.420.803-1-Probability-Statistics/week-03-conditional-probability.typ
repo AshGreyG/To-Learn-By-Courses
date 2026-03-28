@@ -244,9 +244,13 @@
     ]
   ]
 
-  all leaf nodes are the end case, there are $6$ endings of A winning in total
-  $10$ endings. So the probability ratio of A winning and B winning is $3:2$,
-  thus the reasonable distribution is $3:2$.
+  There is an easy-to-mistake problem: we cannot just count the leaf node of
+  different winners. We need to compute all independent probabilities of every
+  branch:
+
+  $ P("A wins") = (1/2)^2 + (1/2)^3 × 2 + (1/2)^4 × 3 = 11/16 $
+
+  hence we know the stake should be splitted into $11:5$;
 
   (3) This is a *binomial distribution problem*. For A to lose, B must win $m$
   rounds before A wins $n$ rounds. Consider a fixed number of total possible
