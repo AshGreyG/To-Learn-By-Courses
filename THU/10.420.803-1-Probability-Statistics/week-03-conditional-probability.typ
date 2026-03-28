@@ -1,3 +1,4 @@
+#import "@preview/tdtr:0.5.4": *
 #set text(
   font: "C059",
 )
@@ -86,3 +87,174 @@
   (2) We know that $P(K) = 0.2$, so $P(G) = 1 - P(K) = 0.8$, so when observed
   that the student answered the question correctly, the probability that the
   student actually knew the correct answer is $0.5$.
+
+#linebreak()
+
+- *19. It is known that $5%$ of men are colorblind and $0.25%$ of women are
+  colorblind. From a population where the ratio of men to women is $22:21$, a
+  person is randomly selected and found to be colorblind. What is the probability
+  that this person is male?*
+
+- Answer: Define $M$ be the event the person is male (man), and $W$ be the event
+  that the person is female (woman), and $C$ be the event the person is colorblind.
+
+  Using the ratio $22:21$ we know that $P(M) = 22\/43$ and $P(W) = 21\/43$. The
+  problem gives that $P(C|M) = 0.05$ and $P(C|W) = 0.0025$, so the probability
+  of being a colorblind is
+
+  $ P(C) = P(M)⋅P(C|M) + P(W)⋅P(C|W) ≈ 0.0268 $
+
+  according to Baye's theorem, we have
+
+  $ P(M|C) = (P(C|M)⋅P(M)) / P(C) = 95.445 % $
+
+#linebreak()
+
+= 2 Chapter 1.5
+
+- *4. Suppose a circuit is composed of three components $A$, $B$, and $C$. If the
+  probabilities of failure for components $A$, $B$, and $C$ are $0.3$, $0.2$, and
+  $0.2$, respectively, and each component works independently, find the probability
+  that the circuit fails in the following cases:*
+
+  (1) Components $A$, $B$, and $C$ are in series;
+
+  (2) Components $A$, $B$, and $C$ are in parallel;
+
+  (3) Component $A$ is in series with the parallel combination of components $B$
+  and $C$.
+
+- Answer: First let $P(F_A) = 0.3$, $P(F_B) = 0.2$ and $P(F_C) = 0.2$ be the
+  probabilities of component $A$ failing, $B$ failing and $C$ failing respectively.
+
+  (1) A series circuit works only if *all* components work. So
+  $P(sans("circuit works")) = P(sans("works")_A) × P(sans("works")_B)
+  × P(sans("works")_C) = 0.7 × 0.8 × 0.8 = 0.448$. So failing probability is
+  $1 - 0.448 = 0.552$;
+
+  (2) A parallel circuit works  when there is at least one component works. So
+  $P(sans("circuit fails")) = (F_A) × P(F_B) × P(F_C) = 0.012$;
+
+  (3) Combine the analysis of 1 and 2, we know that the failing probability of
+  parallel circuit of component $B$ and $C$ is $P(sans("circuit fails")_(B C))
+  = P(F_B) × P(F_C) = 0.04$. So $P(sans("circuit works")) = P(sans("works")_A)
+  × P(sans("works")_(B ∥ C)) = 0.672$.
+
+#linebreak()
+
+- *8. Suppose $P(A) = 0.4$ and $P(A ∪ B) = 0.9$. Find $P(B)$ under the following
+  conditions:*
+
+  (1) $A$ and $B$ are mutually exclusive (disjoint);
+
+  (2) $A$ and $B$ are independent;
+
+  (3) $A ⊆ B$.
+
+- Answer:
+
+  (1) $P(A ∪ B) = P(A) + P(B)$ thus $P(B) = 0.5$ (this means the events cannot
+  happen at the same time so $P(A B) = P(A) P(B) = 0$);
+
+  (2) When $A$ and $B$ are independent so $P(A B) = P(A) P(B) = 0.4 P(B)$, thus
+  $P(A ∪ B) = P(A) + P(B) - P(A ∩ B) = P(A) + 0.6 P(B)$, we can calculate $P(B)$
+  as $5 \/ 6$;
+
+  (3) When $A ⊆ B$, $P(A ∪ B) = P(B) = 0.9$.
+
+#linebreak()
+
+- *12. The probability of a single anti-aircraft gun hitting an aircraft is $0.3$.
+  When multiple guns fire independently and simultaneously, how many anti-aircraft
+  guns are needed to have a 99% certainty of hitting the aircraft?*
+
+- Answer: We only need to consider all anti-aircrafts don't hit the aircraft.
+  Assume that there are $k$ anti-aircrafts, so the probability of $k$ anti-aircrafts
+  not hitting the aircraft is $0.7^k$, our target is
+
+  $ 0.7^k < 0.01 $
+
+  so we at least need $20$ anti-aircrafts.
+
+#linebreak()
+
+- *18. The probabilities that a person has blood type A, B, AB, or O are
+  $0.37, 0.21, 0.08$, and $0.34$, respectively. If four people are chosen at
+  random, find the probability that:*
+
+  (1) The blood types of these four people are all different;
+
+  (2) The blood types of these four people are all the same.
+
+- Answer:
+
+  (1) Actually there are $4!$ kinds of permutations of these four people, so
+  the probability is $p_1 = 4! × 0.37 × 0.21 × 0.08 × 0.34 ≈ 0.0507$;
+
+  (2) They may be A, B, AB or O, the probability is $p_2 = 0.37^4 + 0.21^4 +
+  0.08^4 + 0.34^4 ≈ 0.0341 $.
+
+#linebreak()
+
+- *21. Two gamblers, A and B, each have a $1\/2$ probability of winning any single
+  round. They agree that whoever first wins a certain number of rounds will win
+  the entire stake. However, the game is interrupted partway through. Please
+  determine how to reasonably distribute the stake in the following situations:*
+
+  (1) Both gamblers A and B each still need to win $k$ rounds to win the game;
+
+  (2) Gambler A still needs to win $2$ rounds, while gambler B still needs to
+  win $3$ rounds;
+
+  (3) Gambler A still needs to win $n$ rounds, while gambler B still needs to win
+  $m$ rounds.
+
+- Answer: A reasonable distribution is based on each player's *probability of
+  winning* from the moment the game was interrupted.
+
+  (1) Both players need the exact same number of rounds ($k$) to win and their
+  skill levels are equal ($1\/2$), either person doesn't have any advantage. So
+  the stake should be likely splitted into $1:1$;
+
+  (2) If A needs $2$ wins and B needs $3$ wins, the game must end within at most
+  $2 + 3 - 1 = 4$ rounds. We can use a tree diagram to display all possible
+  outcomes of next $4$ rounds:
+
+  #align(center)[
+    #tidy-tree-graph(spacing: (10pt, 10pt))[
+      - Game starts here
+        - A
+          - A (end)
+          - B
+            - A (end)
+            - B
+              - A (end)
+              - B (end)
+        - B
+          - A
+            - A (end)
+            - B
+              - A (end)
+              - B (end)
+          - B
+            - A
+              - A (end)
+              - B (end)
+            - B (end)
+    ]
+  ]
+
+  all leaf nodes are the end case, there are $6$ endings of A winning in total
+  $10$ endings. So the probability ratio of A winning and B winning is $3:2$,
+  thus the reasonable distribution is $3:2$.
+
+  (3) This is a *binomial distribution problem*. For A to lose, B must win $m$
+  rounds before A wins $n$ rounds. Consider a fixed number of total possible
+  remaining rounds $n + m - 1$
+
+  $ P("A wins") = ∑_(k=n)^(n+m-1) binom(n+m-1, k) (1/2)^(n+m-1) $
+
+  thus the reasonable distribution will be
+
+  $ P("B wins")/P("A wins") & = (1 - P("A wins"))/P("A wins") \
+    & = 1 ⧸ [∑_(k=n)^(n+m-1) binom(n+m-1, k) (1/2)^(n+m-1)] - 1 $
