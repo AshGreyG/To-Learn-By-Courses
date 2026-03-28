@@ -174,7 +174,7 @@
 
   $ 0.7^k < 0.01 $
 
-  so we at least need $20$ anti-aircrafts.
+  so we at least need $13$ anti-aircrafts.
 
 #linebreak()
 
