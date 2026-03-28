@@ -138,7 +138,8 @@
   (3) Combine the analysis of 1 and 2, we know that the failing probability of
   parallel circuit of component $B$ and $C$ is $P(sans("circuit fails")_(B C))
   = P(F_B) × P(F_C) = 0.04$. So $P(sans("circuit works")) = P(sans("works")_A)
-  × P(sans("works")_(B ∥ C)) = 0.672$.
+  × P(sans("works")_(B ∥ C)) = 0.672$. So the failing probability is $1 - 0.672
+  = 0.328$.
 
 #linebreak()
 
