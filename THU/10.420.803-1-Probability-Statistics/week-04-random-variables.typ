@@ -284,9 +284,9 @@
   (2) Following the same logic of (1) we know that
 
   $ 𝔼[X^n] = & ∫_0^∞ t^n p(t) "d"t \
-    = & ∫_(t=0)^∞ (∫_(x=0)^t n x^(n-1) "d"x)p(x) "d"t \
-    ⟶^("Fubini's Theorem")_(0 ≤ x ≤ t < ∞) & ∫_(x=0)^∞ n x^(n-1) (∫_(t=x)^∞ p(x)
-    "d"x)"d"t \
+    = & ∫_(t=0)^∞ (∫_(x=0)^t n x^(n-1) "d"x)p(t) "d"t \
+    ⟶^("Fubini's Theorem")_(0 ≤ x ≤ t < ∞) & ∫_(x=0)^∞ n x^(n-1) (∫_(t=x)^∞ p(t)
+    "d"t)"d"x \
     = & ∫_0^∞ n x^(n-1) P(X > x) "d"x $
 
 == Chapter 2.3
