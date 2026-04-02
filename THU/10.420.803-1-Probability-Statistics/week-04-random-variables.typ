@@ -226,7 +226,7 @@
 - *19. Let $X$ be a discrete random variable that takes only non-negative integer
   values. If its mathematical expectation exists, prove:*
 
-  (1) $display(𝔼[X] = ∑_(k=1)^∞ P(X > k))$
+  (1) $display(𝔼[X] = ∑_(k=1)^∞ P(X ≥ k))$
 
   (2) $display(∑_(k=0)^∞ k P(X > k) = 1/2 ( 𝔼[X^2] - 𝔼[X] ))$
 
@@ -245,7 +245,7 @@
 
   $ 𝔼[X] & = ∑_(n=1)^∞∑_(k-1)^n P(X = n) \
     & = ∑_(k=1)^∞∑_(n=k)^∞ P(X = n) \
-    & = ∑_(k=1)^∞ P(X >= k) ⟶^(P(X=K)=0) ∑_(k=1)^∞ P(X > k) \ $
+    & = ∑_(k=1)^∞ P(X >= k) \ $
 
   (2) According to the linearity of expectation, we know that $𝔼[X^2]- 𝔼[X]
   = 𝔼[X^2 - X] = 𝔼[X(X-1)]$, so
