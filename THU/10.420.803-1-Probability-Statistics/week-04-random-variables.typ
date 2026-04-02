@@ -213,12 +213,13 @@
   the value of $k$ be for the insurance company's expected profit to reach $10%$
   of $a$?*
 
-- Answer: We first calculate the expected profit, denoting it as $𝔼[X]$
+- Answer: We first calculate the expected profit (profit for the insurer should
+  include the premium in both cases, if $A$ occurs the profit is $k a - a$ and
+  if $A$ doesn't occur then the profit is $k a$), denoting it as $𝔼[X]$
 
-  $ 𝔼[X] = -p a + (1-p)k a = (k - k p - p)a $
+  $ 𝔼[X] = p(k a - a) + (1 - p) k a = (k - p) a $
 
-  thus we need $k - k p - p >= 0.1$, we can calculate $k$ needs to be $k >=
-  (0.1+p)\/(1-p)$.
+  thus we need $k - p ≥ 0.1$, so $k_"min" = p + 0.1$.
 
 #linebreak()
 
