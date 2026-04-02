@@ -41,7 +41,7 @@
   ]
 
   (2) In this scenario, every time you fail (draw a black ball), the total number
-  of balls stats at $10$, but the number of white balls increases while black
+  of balls stays at $10$, but the number of white balls increases while black
   balls decrease. We know the random variable $X$ ranges from $1$ to $4$:
 
   #align(center)[
