@@ -45,7 +45,7 @@
 
   (1) According to the analysis, we find the acceleration of each object is
 
-  $ bold(a_1) = +2 "m"⋅"s"^(-2)m, space bold(a_2) = +2 "m" ⋅ "s"^(-2),
+  $ bold(a_1) = +2 "m"⋅"s"^(-2), space bold(a_2) = +2 "m" ⋅ "s"^(-2),
     space bold(a_3) = -6 "m"⋅"s"^(-2) $
 
   (2) According to the analysis, we find that
