@@ -145,12 +145,12 @@
   - Gravity $m g$: acting vertically downward;
   - Normal Force $F_N$: acting perpendicular to the funnel wall;
   - Static Friction $f_s$: acting along the wall, its direction depends on whether
-    the tunnel spinning too fast or too slow.
+    the funnel spinning too fast or too slow.
 
   So there are two boundary cases:
-    - case 1 is *minimum speed* ($n_"min"$), if the tunnel spins too slowly, the
+    - case 1 is *minimum speed* ($n_"min"$), if the funnel spins too slowly, the
       object tends to *slide down*. Friction acts *up* the wall to prevent this;
-    - case 2 is *maximum speed* ($n_"max"$), if the tunnel spins too fast, the
+    - case 2 is *maximum speed* ($n_"max"$), if the funnel spins too fast, the
       object tends to *slide up* due to high centripetal requirement. Friction
       acts *down* the wall to prevent this.
 
