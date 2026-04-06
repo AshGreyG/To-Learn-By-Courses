@@ -34,7 +34,8 @@
   $ F_("on pipe") = sqrt(F_x^2 + F_y^2) = sqrt(2) ⋅ dot(m) ⋅ v =
     sqrt(2) ⋅ (3 × 10^3) ⋅ 10 ≈ 42426.407 "N" $
 
-  and the force directs obliquely outward from the bend corner.
+  and the force directs obliquely outward from the bend corner (at $45°$ to the
+  outlet directions in the plane of the bend).
 
 #linebreak()
 
