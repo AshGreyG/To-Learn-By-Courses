@@ -79,3 +79,5 @@
 
   $ z' = (V_"cube" ⋅ z_"cube" - V_"cyl" ⋅ z_"cyl")/(V_"cube" - V_"cyl")
     = (32 - π)/(64 - 4 π) a ≈ 0.561 a $
+
+  So the coordinate of  new mass center is $(0, 0, 0.561 a)$.
