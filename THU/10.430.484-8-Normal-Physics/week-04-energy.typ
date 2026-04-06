@@ -73,9 +73,9 @@
 - Answer: This problem should be solved into distinct stages: the *collision
   stage* and the *oscillation stage*.
 
-  - The *collision step* with no inelastic stage. The bullet hits one block and
-    gets stuck. Since the spring hasn't had time to compress yet, this is a
-    standard perfectly inelastic collision between bullet $m$ and block $A$.
+  - The *collision step* (a perfectly inelastic collision). The bullet hits one
+    block and gets stuck. Since the spring hasn't had time to compress yet, this
+    is a standard collision between bullet $m$ and block $A$.
     We can find the velocity $v_(A m)$ of the combined block $A$-bullet system
     immediately after impact.
 
