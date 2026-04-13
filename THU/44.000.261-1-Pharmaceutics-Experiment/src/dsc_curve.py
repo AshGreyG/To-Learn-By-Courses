@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def dcs_curve(
     raw_pvp_k30: str,
-    raw_pelodipine: str,
+    raw_felodipine: str,
     raw_physical_mixture: str,
     raw_solid_dispersion: str,
     output: str
@@ -14,7 +14,7 @@ def dcs_curve(
 
     raws = [
         raw_pvp_k30,
-        raw_pelodipine,
+        raw_felodipine,
         raw_physical_mixture,
         raw_solid_dispersion
     ]
@@ -36,9 +36,9 @@ def dcs_curve(
             if raw == raw_pvp_k30 :
                 color = "#E69875"
                 label = "PVP K30"
-            elif raw == raw_pelodipine :
+            elif raw == raw_felodipine :
                 color = "#83C092"
-                label = "Pelodipine"
+                label = "Felodipine"
             elif raw == raw_physical_mixture :
                 color = "#D699B6"
                 label = "Physical Mixture"
@@ -56,14 +56,14 @@ def dcs_curve(
 
 def main() -> None :
     pvp_k30 = input().strip()
-    pelodipine = input().strip()
+    felodipine = input().strip()
     physical_mixture = input().strip()
     solid_dispersion = input().strip()
     output = input().strip()
 
     dcs_curve(
         pvp_k30,
-        pelodipine,
+        felodipine,
         physical_mixture,
         solid_dispersion,
         output
