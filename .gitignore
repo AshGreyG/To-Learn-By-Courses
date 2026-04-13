@@ -2,3 +2,6 @@
 **/.wake
 **/.claude
 **/*.pdf
+
+# Remove the unnecessary raw data from git
+THU/44.000.261-1-Pharmaceutics-Experiment/assets/*.txt
