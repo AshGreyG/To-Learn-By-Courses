@@ -758,9 +758,9 @@ significantly improved solubility and faster dissolution rates compared to the
 crystalline physical mixture. This result complements the DSC data we analyzed
 previously, providing "structural fingerprints" to match the thermal data.
 
-== 5.3 Felodipine Drilling Pill Inspection
+== 5.3 Felodipine Dripping Pill Inspection
 
-=== 5.3.1 Weight Difference of Felodipine Drilling Pill
+=== 5.3.1 Weight Difference of Felodipine Dripping Pill
 
 #align(center)[
   #figure(
@@ -798,11 +798,227 @@ previously, providing "structural fingerprints" to match the thermal data.
       [20], [22.00], [-1.40], [-5.98],
       table.hline()
     ),
-    caption: "Weight Difference of Drilling Pill"
+    caption: "Weight Difference of Dripping Pill"
   )
 ]
 
-=== 5.3.2
+=== 5.3.2 Disintegration Time of Felodipine Dripping Pill
+
+All felodipine dripping pill samples disintegrate in 4 mins.
+
+= 6 Discussion Questions
+
+1. *Briefly describe the impact of polymorphism on drug development:*
+
+  The choice of a specific polymorph is a critical decision in pharmaceutics
+  because it affects the following areas
+
+  1. Solubility and Dissolution Rate
+
+    Different polymorphs have different lattice energies. Metastable forms generally
+    have lower lattice energy and higher thermodynamic activity, leading to higher
+    apparent solubility and faster dissolution rates compared to the stable form.
+
+    As seen in our XRD and DSC data, converting a crystalline drug to an amorphous
+    or different solid state can significantly enhance the bioavailability of poorly
+    water-soluble drugs.
+
+  2. Bioavailability and Therapeutic Efficacy
+
+    For drugs where absorption is dissolution-limited (BCS Class II and IV),
+    different polymorphs can lead to different plasma concentration-time profiles.
+
+    If a drug unexpectedly transitions to a less soluble polymorph during storage,
+    it may result in therapeutic failure because the drug cannot reach the required
+    concentration in the bloodstream.
+
+  3. Stability (Physical and Chemical)
+
+    The thermodynamically stable form is the one with the lowest Gibbs free energy
+    at a given temperature and pressure. Metastable forms may undergo phase
+    transformation into the stable form during processing (e.g., grinding,
+    granulation) or storage. This transformation can lead to changes in the
+    appearance of the dosage form, such as caking in suspensions or hardening of
+    ointments.
+
+  4. Processability and Manufacturing
+
+    Polymorphs often exhibit different crystal habits (shapes), such as needles,
+    plates, or prisms. These shapes affect the flowability, compressibility, and
+    sticking properties of the powder during tableting.
+
+    A specific polymorph might be chosen simply because it is easier to filter or
+    dry during large-scale chemical synthesis.
+
+  5. Intellectual Property and Regulatory Compliance
+
+    Different polymorphs can be patented separately, allowing companies to extend
+    the lifecycle of a drug product.
+
+    Regulatory agencies (like the FDA or NMPA) require strict control and
+    characterization of polymorphs (using tools like the DSC and XRD we've used)
+    to ensure batch-to-batch consistency in safety and efficacy.
+
+2. *Briefly describe the principles and advantages of using DSC and XRD for the
+  phase analysis of solid dispersions:*
+
+  1. Differential Scanning Calorimetry (DSC)
+
+    - Principle: DSC measures the difference in the amount of heat required to
+      increase the temperature of a sample and a reference as a function of
+      temperature. When a crystalline drug reaches its melting point, it undergoes
+      an endothermic phase transition, which appears as a sharp "peak" on the
+      thermogram. In a solid dispersion, if the drug is successfully amorphized
+      or molecularly dispersed, this specific melting peak will disappear because
+      there is no crystalline lattice to break down.
+
+    - Advantages:
+      - Quantitative Data: It can determine the degree of crystallinity by measuring
+        the area under the melting peak (enthalpy, $Δ H$).
+      - Detection of Interactions: It can identify glass transition temperatures
+        ($T_g$) and potential drug-polymer interactions or miscibility.
+      - Speed: Provides a rapid thermal "fingerprint" of the formulation state.
+
+  2. X-Ray Diffraction (XRD)
+
+    - Principle: XRD relies on the scattering of X-rays by the periodic arrangement
+      of atoms in a crystal lattice (Bragg's Law). Crystalline materials produce
+      sharp, high-intensity diffraction "peaks" at specific angles ($2θ$) unique
+      to that substance. Amorphous materials, like PVP K30 or successful solid
+      dispersions, lack this long-range order and produce only broad, featureless
+      "halos".
+
+    - Advantages:
+      - Direct Structural Proof: While DSC looks at thermal behavior, XRD provides
+        direct evidence of the physical atomic arrangement.
+      - Non-Destructive: Unlike DSC, which melts the sample, XRD usually leaves
+        the sample chemically intact.
+      - Polymorph Identification: It is the gold standard for distinguishing
+        between different polymorphic forms of a drug, which may have similar
+        melting points but different lattice structures.
+
+3. *What are the main factors affecting the stability of solid dispersions?*
+
+  1. Thermodynamic Instability (Recrystallization)
+
+    - The "Driving Force": As seen in our XRD results, drugs in a solid dispersion
+      are often converted from a stable crystalline form to an unstable amorphous
+      state.
+    - Energy State: Amorphous forms have higher Gibbs free energy than their
+      crystalline counterparts. This creates a natural thermodynamic drive for the
+      drug molecules to "re-organize" back into a crystalline lattice over time,
+      especially during storage.
+    - Impact: Once recrystallization occurs, the solubility and dissolution
+      advantages of the solid dispersion are lost.
+
+  2. Molecular Mobility and Glass Transition ($T_g$)
+
+    - The Role of Temperature: The stability of an amorphous system is closely
+      linked to its Glass Transition Temperature ($T_g$).
+    - Storage Conditions: If the storage temperature approaches or exceeds the $T_g$
+      of the solid dispersion, molecular mobility increases significantly. This
+      allows the drug molecules to move and collide, facilitating the formation of
+      crystal nuclei.
+    - Polymer Function: Polymers like PVP K30 (which we used) help stabilize the
+      system by increasing the overall $T_g$ and providing a "mechanical barrier"
+      that restricts the movement of drug molecules.
+
+  3. Moisture Absorption (Hygroscopicity)
+
+    - Plasticizing Effect: Many commonly used carriers, such as PVP K30 and PEG
+      6000, are hygroscopic.
+    - DSC Evidence: In our DSC curve for PVP K30, the broad endothermic dip at lower
+      temperatures indicates the presence of absorbed water.
+    - Mechanism: Water acts as a "plasticizer," lowering the $T_g$ of the system
+      and increasing molecular mobility, which drastically accelerates the rate of
+      recrystallization.
+
+  4. Drug-Carrier Miscibility and Interactions
+
+    - Phase Separation: If the drug and carrier are not perfectly miscible at a
+      molecular level, they may undergo "phase separation" over time, leading to
+      the formation of drug-rich domains that easily crystallize.
+    - Intermolecular Bonding: Stability is enhanced if there are strong interactions,
+      such as hydrogen bonding, between the drug and the carrier. These bonds "lock"
+      the drug molecules in place within the polymer matrix.
+
+  5. Drug Loading (Concentration)
+
+    - Supersaturation: Higher drug loading increases the degree of supersaturation
+      within the carrier.
+    - Risk: The higher the drug concentration, the more likely the system is to
+      deviate from its meta-stable state and revert to the crystalline form.
+
+4. *What are the factors affecting the formation, shape, and weight of dripping
+  pills? How are these controlled during actual operation?*
+
+  1. Factors Affecting Formation and Shape
+
+  The formation of a perfect spherical drop depends primarily on the balance
+  between gravity and surface tension.
+
+  - Property of the Base and Liquid Medicine: The viscosity and surface tension
+    of the melt significantly affect whether a drop can form and stay intact.
+  - Temperature of the Melt: If the temperature is too high, the viscosity
+    decreases too much, leading to "splashing" or irregular shapes; if too
+    low, the liquid may clog the nozzle or form "tailed" pills.
+  - Properties of the Cooling Liquid (Condensant): The density, viscosity, and
+    surface tension of the cooling liquid must be compatible with the base. Ideally,
+    the density of the cooling liquid should be slightly less than the pill to
+    allow it to sink slowly.
+  - Temperature of the Cooling Liquid: A temperature gradient (usually colder at
+    the bottom) is essential to ensure the drop solidifies gradually into a sphere
+    rather than flattening upon hitting the bottom.
+
+  2. Factors Affecting Pill Weight (Uniformity)
+
+  Weight variation is a critical quality control metric in our experimental
+  reports.
+
+  - Nozzle Size (Diameter): The outer diameter of the dripping nozzle determines
+    the initial volume of the drop.
+  - Dripping Speed: If the speed is too fast, the drops may merge or vary in size
+    due to inconsistent pressure.
+  - Pressure Head (Liquid Level): As the liquid level in the hopper drops, the
+    pressure decreases, which can result in smaller/lighter pills over time.
+
+In a lab or industrial setting, these variables are controlled as follows:
+
+#align(center)[
+  #figure(
+    table(
+      columns: (auto, auto),
+      stroke: none,
+      align: (left, left),
+
+      table.hline(),
+      table.header([Factor], [Control Method]),
+      table.hline(stroke: 0.4pt),
+
+      [Temperature],
+      [Use a *thermostatic water bath* for the melt and a refrigerated cooling
+      column for the condensant.],
+
+      [Dripping Speed],
+      [Adjust the *control valve or use a peristaltic pump* to maintain a constant
+      rate (e.g., 20–60 drops/min).],
+
+      [Pill Shape],
+      [Select an appropriate cooling liquid (e.g., liquid paraffin for water-soluble
+      bases like PEG, or water for oil-soluble bases).],
+
+      [Weight Uniformity],
+      [Maintain a *constant liquid level* in the hopper and ensure the nozzle is
+      clean and vibration-free.],
+
+      [Pill Descent],
+      [Adjust the *height of the cooling column* so the drop has enough time to
+      shrink and solidify into a sphere before reaching the bottom.],
+      table.hline()
+    ),
+    caption: "Controlled Variables for Dripping Pill"
+  )
+]
 
 = Appendix
 
