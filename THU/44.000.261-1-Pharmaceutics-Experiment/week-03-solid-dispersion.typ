@@ -2,8 +2,7 @@
   font: "C059",
   hyphenate: true,
 )
-#set page(numbering: "1")
-#show table: set table.cell(align: center + horizon)
+#set page(numbering: "- 1 -")
 #show figure.where(kind: table): set figure.caption(position: top)
 #show raw.where(block: true): set text(font: "Cascadia Mono", size: 8pt)
 
@@ -257,7 +256,8 @@ various polymorphs reported in the literature are shown in
 
 #figure(
   table(
-    columns: (auto, auto, auto),
+    columns: 3 * (auto,),
+    align: center + horizon,
     stroke: none,
     table.hline(),
     table.header([Name and Molecular Formula], [Structural Formula], [Drug Polymorph and Melting Point]),
@@ -757,6 +757,52 @@ molecules are disordered and "ready to dissolve," which typically leads to
 significantly improved solubility and faster dissolution rates compared to the
 crystalline physical mixture. This result complements the DSC data we analyzed
 previously, providing "structural fingerprints" to match the thermal data.
+
+== 5.3 Felodipine Drilling Pill Inspection
+
+=== 5.3.1 Weight Difference of Felodipine Drilling Pill
+
+#align(center)[
+  #figure(
+    table(
+      stroke: none,
+      columns: 4 * (auto,),
+      align: (right, center, right, right),
+      table.hline(),
+      table.header(
+        [Number],
+        [Weights (mg)],
+        [Difference to Average Weight (mg)],
+        [Difference Percent (%)]
+      ),
+      table.hline(stroke: 0.4pt),
+      [1], [22.00], [-1.40], [-5.98],
+      [2], [24.00], [+0.60], [+2.56],
+      [3], [23.00], [-0.40], [-1.71],
+      [4], [24.00], [+0.60], [+2.56],
+      [5], [22.00], [-1.40], [-5.98],
+      [6], [22.00], [-1.40], [-5.98],
+      [7], [25.00], [+1.60], [+6.84],
+      [8], [24.00], [+0.60], [+2.56],
+      [9], [24.00], [+0.60], [+2.56],
+      [10], [23.00], [-0.40], [-1.71],
+      [11], [23.00], [-0.40], [-1.71],
+      [12], [24.00], [+0.60], [+2.56],
+      [13], [22.00], [-1.40], [-5.98],
+      [14], [25.00], [+1.60], [+6.84],
+      [15], [22.00], [-1.40], [-5.98],
+      [16], [24.00], [+0.60], [+2.56],
+      [17], [25.00], [+1.60], [+6.84],
+      [18], [24.00], [+0.60], [+2.56],
+      [19], [24.00], [+0.60], [+2.56],
+      [20], [22.00], [-1.40], [-5.98],
+      table.hline()
+    ),
+    caption: "Weight Difference of Drilling Pill"
+  )
+]
+
+=== 5.3.2
 
 = Appendix
 
