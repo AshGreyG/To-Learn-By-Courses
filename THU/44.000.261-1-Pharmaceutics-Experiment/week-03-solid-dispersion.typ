@@ -8,7 +8,7 @@
 #show raw.where(block: true): set text(font: "Cascadia Mono", size: 8pt)
 
 #align(center, text(17pt)[
-  = Lab-3 of Pharmaceutical Experiment
+  = Lab-8 of Pharmaceutical Experiment
 ])
 
 #let experiment-date = datetime(year: 2026, month: 4, day: 8)
@@ -632,7 +632,8 @@ Dispersion.
 
 === 5.2.2 Differential Scanning Calorimetry Analysis
 
-We extract the data from DSC raw outputs and draw the DSC/Temperature figure:
+We can extract the data from DSC raw outputs and draw the DSC/Temperature curve
+figure:
 
 #align(center)[
   #stack(dir: ltr)[
@@ -644,6 +645,118 @@ We extract the data from DSC raw outputs and draw the DSC/Temperature figure:
     ]
   ]
 ]
+
+Based on the thermal behavior of the four samples, we can draw the following
+conclusions:
+
+1. Identification of Crystalline Felodipine
+
+  The Pure Felodipine curve (green) shows a sharp, narrow endothermic peak at
+  approximately 145°C–150°C.
+
+  This represents the melting point of the drug, confirming that in its pure form,
+  Felodipine exists in a highly organized crystalline state.
+
+2. Physical Mixture vs. Solid Dispersion
+
+  Physical Mixture (pink): This curve still exhibits the characteristic Felodipine
+  melting peak at ~148°C, though it is slightly broader or shifted due to the
+  presence of the polymer. This indicates that in a simple mixture, the drug retains
+  its crystalline structure.
+
+  Solid Dispersion (yellow): In this curve, the sharp melting peak of Felodipine
+  has completely disappeared.
+
+3. Polymer Hydration and State
+
+  Both the PVP K30 (orange) and the formulations containing it show a broad,
+  shallow endothermic dip between 50°C and 120°C.
+
+  This is characteristic of the evaporation of residual moisture (desorption of
+  water) absorbed by the hygroscopic PVP polymer, rather than a phase transition
+  of the drug itself.
+
+=== 5.2.3 X Ray Diffraction Analysis
+
+We can extract the data from XRD raw outputs and draw the Diffraction-Angle/
+Diffraction-Intensity curve figure:
+
+#align(center)[
+  #stack(dir: ltr)[
+    #box(width: 40%)[
+      #figure(
+        image("assets/xrd-felodipine-curve.svg"),
+        caption: "Felodipine",
+      )
+    ]
+    #box(width: 40%)[
+      #figure(
+        image("assets/xrd-pvp-k30-curve.svg"),
+        caption: "PVP K30",
+      )
+    ]
+  ]
+  #stack(dir: ltr)[
+    #box(width: 40%)[
+      #figure(
+        image("assets/xrd-peg-6000-curve.svg"),
+        caption: "PEG 6000",
+      )
+    ]
+    #box(width: 40%)[
+      #figure(
+        image("assets/xrd-physical-mixture-curve.svg"),
+        caption: "Physical Mixture",
+      )
+    ]
+  ]
+  #stack(dir: ltr)[
+    #box(width: 40%)[
+      #figure(
+        image("assets/xrd-solid-dispersion-curve.svg"),
+        caption: "Solid Dispersion",
+      )
+    ]
+  ]
+]
+
+1. Crystalline Nature of Pure Components
+
+  Felodipine (Fig. 11): The diffractogram shows numerous sharp, intense diffraction
+  peaks across the $2θ$ range (specifically between $10°$ and $35°$). This confirms
+  that the pure drug is in a highly crystalline state.
+
+  PEG 6000 (Fig. 13): This polymer also exhibits distinct sharp peaks (notably at
+  $~ 19°$ and $23°$), indicating it possesses a semi-crystalline structure.
+
+2. Amorphous Nature of PVP K30
+
+  PVP K30 (Fig. 12): Unlike the drug, this curve lacks sharp peaks and instead
+  shows two broad "halos" or humps. This is the signature of an amorphous material
+  with no long-range atomic order.
+
+3. Physical Mixture Analysis
+
+  Physical Mixture (Fig. 14): In this sample, the sharp characteristic peaks of
+  crystalline Felodipine are still clearly visible, though reduced in intensity
+  due to dilution. This proves that simply mixing the drug and polymer does not
+  change the crystalline state of the drug.
+
+4. Solid Dispersion and Amorphization
+
+  Solid Dispersion (Fig. 15): The diffractogram for the solid dispersion is nearly
+  identical to that of the pure PVP K30 (Fig. 12), showing only broad amorphous
+  halos. Total Disappearance of Peaks: All sharp diffraction peaks from Felodipine
+  have completely vanished.
+
+The XRD data confirms that the preparation of the Solid Dispersion has successfully
+converted Felodipine from its original crystalline form into an amorphous state.
+
+This amorphous state is highly beneficial in pharmaceutics because the drug
+molecules are disordered and "ready to dissolve," which typically leads to
+significantly improved solubility and faster dissolution rates compared to the
+crystalline physical mixture. This result complements the DSC data we analyzed
+previously, providing "structural fingerprints" to match the thermal data.
 
 = Appendix
 
@@ -664,12 +777,25 @@ We extract the data from DSC raw outputs and draw the DSC/Temperature figure:
 2. How to redraw Differential Scanning Calorimetry Analysis (DSC) curve from
   extracted data:
 
-  - Notice the draw extracted data is in CRLF and we first convert it in LF;
+  - Notice the raw extracted data is in CRLF and we first convert it in LF;
   - Use this Python script to draw:
 
   #let dsc-curve-python-script = read("src/dsc_curve.py")
   #raw(
     str(dsc-curve-python-script),
+    block: true,
+    lang: "python"
+  )
+
+3. How to redraw X-Ray Diffraction Analysis (XRD) curve from extracted data:
+
+  - Notice the raw extracted data has table character at the end of each line,
+    so we can use `:%s/0\t$//g` in vim to remove these table characters;
+  - Use this Python script to draw:
+
+  #let xrd-curve-python-script = read("src/xrd_curve.py")
+  #raw(
+    str(xrd-curve-python-script),
     block: true,
     lang: "python"
   )
