@@ -4,7 +4,7 @@
 
 import matplotlib.pyplot as plt
 
-def dcs_curve(
+def dsc_curve(
     raw_pvp_k30: str,
     raw_felodipine: str,
     raw_physical_mixture: str,
@@ -24,11 +24,11 @@ def dcs_curve(
     for raw in raws :
         with open(raw, "r", encoding="utf-8") as f :
             data_temp = []
-            data_dcs = []
+            data_dsc = []
             for line in f :
-                _, temp, _, dcs = map(float, line.strip().split("\t"))
+                _, temp, _, dsc = map(float, line.strip().split("\t"))
                 data_temp.append(temp)
-                data_dcs.append(dcs)
+                data_dsc.append(dsc)
 
             color = ""
             label = ""
@@ -46,7 +46,7 @@ def dcs_curve(
                 color = "#DBBC7F"
                 label = "Solid Dispersion"
 
-            plt.plot(data_temp, data_dcs, color=color, label=label)
+            plt.plot(data_temp, data_dsc, color=color, label=label)
 
     plt.grid(True, alpha=0.3)
     plt.xlabel("Temperature of the Sample (°C)")
@@ -61,7 +61,7 @@ def main() -> None :
     solid_dispersion = input().strip()
     output = input().strip()
 
-    dcs_curve(
+    dsc_curve(
         pvp_k30,
         felodipine,
         physical_mixture,
