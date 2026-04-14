@@ -531,7 +531,7 @@ The crystal form pictures of the raw material observed under the microscope are:
     #box(width: 45%)[
       #figure(
         image("assets/felodipine-crystal.png"),
-        caption: "Pelidipine",
+        caption: "Felodipine",
       )
     ]
     #box(width: 45%)[

@@ -1,6 +1,6 @@
 # ---
 # principle: The Python script to redraw melting curve from raw photo. You should
-# first use the path tool of GIMP to trance the curve and export as svg, then
+# first use the path tool of GIMP to trace the curve and export as svg, then
 # extract the path data of svg into an empty plaintext file.
 # ---
 
