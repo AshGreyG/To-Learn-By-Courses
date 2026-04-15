@@ -2,6 +2,7 @@
   font: "C059",
   hyphenate: true
 )
+#show figure.where(kind: table): set figure.caption(position: top)
 
 #align(center, text(17pt)[
   = Lab-1 of Pharmaceutical Experiment
@@ -142,4 +143,204 @@ Water System.
 
 = 4 Experiment Content
 
+== 4.1 Establishment of Analytical Method for Ibuprofen
 
+1. High-Performance Liquid Chromatography (HPLC) Conditions:
+
+  - Column: C18 (5 μm, 4.6 mm × 250 mm)
+  - Mobile Phase: Acetonitrile–Sodium Acetate Buffer = 60:40 (v/v).
+    (Buffer preparation: Dissolve 6.13 g of sodium acetate in 750 mL of
+    water, adjust pH to 2.5 using glacial acetic acid)
+  - Column Temperature: 30°C
+  - Detection Wavelength: 263 nm
+  - Flow Rate: 1.0 mL/min
+  - Injection Volume: 20 μL
+
+2. Preparation of the Standard Curve:
+
+  Accurately weigh approximately 5 mg of ibuprofen reference standard and
+  place it in a 10 mL volumetric flask. Dissolve and dilute to the mark
+  with methanol, then shake well to obtain the ibuprofen reference stock
+  solution. Accurately measure appropriate aliquots of the stock
+  solution and dilute with methanol to prepare a series of solutions with
+  concentrations of 2, 4, 6, 10, 20, and 40 μg/mL. Inject and detect
+  each solution in sequence. Construct the standard curve by plotting
+  ibuprofen concentration on the x-axis and peak area on the y-axis, and
+  perform linear regression analysis.
+
+== 4.2 Solubilization Effect of Solubilizers on Poorly Soluble Ibuprofen
+
+=== 4.2.1 Effect of Tween-80 and Addition Order on Ibuprofen Solubilization
+
+[Procedure]
+
+1. Add 50 mL of purified water to a 100 mL beaker, add 50 mg of ibuprofen, stir
+  for 2 min, and let stand for 20 min. Observe and record the dissolution of
+  ibuprofen. Filter through a 0.45 μm microporous membrane. Collect the
+  subsequent filtrate, determine the concentration using the HPLC method, and
+  calculate the drug solubility.
+
+2. Add 50 mL of purified water to a 100 mL beaker and add 3 g of Tween-80.
+  Stir until uniform, then add 50 mg of ibuprofen. Stir for 2 min and let stand
+  for 20 min. Observe and record the dissolution. Filter through a 0.45 μm
+  microporous membrane. Accurately measure 0.2 mL of the subsequent filtrate into
+  a 10 mL volumetric flask, dilute to the mark with methanol, shake well, and
+  calculate the drug solubility.
+
+3. Add 50 mL of purified water to a 100 mL beaker and add 50 mg of ibuprofen.
+  Mix well, then add 3 g of Tween-80. Stir for 2 min and let stand for 20 min.
+  Observe and record the dissolution. Filter through a 0.45 μm microporous
+  membrane. Accurately measure 0.2 mL of the subsequent filtrate into a 10 mL
+  volumetric flask, dilute to the mark with methanol, shake well, and calculate
+  the drug solubility.
+
+4. Add 50 mg of ibuprofen to a 100 mL beaker and add 3 g of Tween-80. Mix
+  well, then add 10 mL of purified water and stir for 2 min. Supplement with an
+  additional 40 mL of purified water, stir until uniform, and let stand for
+  20 min. Observe and record the dissolution. Filter through a 0.45 μm
+  microporous membrane. Accurately measure 0.2 mL of the subsequent filtrate into
+  a 10 mL volumetric flask, dilute to the mark with methanol, shake well, and
+  calculate the drug solubility.
+
+[Operational Notes]
+
+1. All experimental conditions should be kept as consistent as possible,
+  including the amount of drug added, stirring method, and stirring time.
+
+2. During solubilization, the sample should be allowed to stand for a period
+  after stirring to facilitate the full entry of the drug into the micelles.
+
+=== 4.2.2 Effect of Polysorbate Type and Temperature on Ibuprofen Solubilization
+
+[Procedure]
+
+1. Prepare two parallel 100 mL beakers, each containing 50 mL of purified
+  water. Add 3 g of Tween-20 and 3 g of Tween-40 to the respective beakers.
+  Stir until uniform, then add 50 mg of ibuprofen to each. Stir for 2 min and
+  let stand for 20 min. Observe and record the dissolution of ibuprofen.
+  Filter through a 0.45 μm microporous membrane. Accurately measure 0.2 mL of
+  the subsequent filtrate into a 10 mL volumetric flask, dilute to the mark
+  with methanol, shake well, and calculate the drug solubility for each.
+
+2. Add 6 g of Tween-80 to 100 mL of purified water and stir until uniform.
+  Measure two 50 mL aliquots of this solution and add 50 mg of ibuprofen to
+  each. Stir at a constant temperature for 20 min under two conditions: room
+  temperature and 55°C. Filter through a 0.45 μm microporous membrane.
+  Accurately measure 0.2 mL of the subsequent filtrate into a 10 mL
+  volumetric flask, dilute to the mark with methanol, shake well, and
+  calculate the drug solubility for each condition.
+
+[Operational Notes]
+
+1. All experimental conditions should be kept as consistent as possible,
+  such as the amount of drug added and the stirring time.
+
+2. After stirring, the samples should be allowed to stand for a period to
+  facilitate the full entry of the drug into the micelles.
+
+=== 4.2.3 Effect of Solvent Additives on the Cloud Point of Tween-80
+
+[Procedure]
+
+Measure 20 mL each of purified water, normal saline (0.9% sodium chloride solution),
+and 5% glucose solution, and place them into separate 50 mL beakers. Add 1 g of
+Tween-80 to each beaker and stir until uniform. Subsequently, place the beakers
+in a constant temperature water bath. Stir gently while slowly increasing the
+heating temperature. Use a thermometer to accurately record the temperature at
+which the solution begins to turn turbid (this is also the temperature at which
+the solution returns to a clear and transparent state upon cooling); this
+temperature is defined as the cloud point.
+
+[Operational Notes]
+
+1. The cloud point of non-ionic surfactants is influenced by factors such as their
+  concentration and the presence of inorganic salts, alcohols, and the pH level in
+  the solvent.
+
+2. Temperature control must be precise during the experimental process; otherwise,
+  the accuracy of the experimental results will be affected.
+
+=== 4.3 Hydrotropic Effect of Co-solutes on Poorly Soluble Theophylline
+
+[Procedure]
+
+Weigh three portions of theophylline (approximately 1.0 g each):
+
+1. Place one portion of theophylline into a small beaker, add 5 mL of purified
+  water, stir, and observe the dissolution.
+
+2. Place one portion of theophylline into a small beaker, add 4 mL of purified
+  water, stir, and add approximately 1 mL of diethylamine dropwise. Observe the
+  dissolution.
+
+3. Place one portion of theophylline into a beaker, add an equal amount of
+  nicotinamide, then add approximately 1 mL of purified water and stir. Supplement
+  with an additional 4 mL of purified water and observe the dissolution.
+
+[Operational Notes]
+
+Pay close attention to the addition order of the reagents.
+
+=== 4.4 Construction of the Solubilization Phase Diagram
+
+[Procedure]
+
+Take a 25 mL beaker and a suitable glass rod, and determine their initial weight.
+According to Table 1-7, weigh in the required amount of Tween-20,  then carefully
+add peppermint oil and stir until uniform; the mixture  should be a clear liquid
+at this stage.
+
+Using a dropper, add purified water dropwise. After adding each drop, the mixture
+must be thoroughly stirred with the glass rod before proceeding. Continue adding
+water until the liquid just turns from clear to turbid. Weigh the beaker and record
+the weight of the added water as W1.
+
+Continue adding purified water carefully to this turbid liquid. The turbidity may
+increase, but in some cases, the mixture will return to a clear state. Record the
+total weight of water added when the solution just becomes clear again as W2
+(W2 includes W1).
+
+Continue adding purified water; if turbidity reappears, record the water weight as
+W3. If the solution does not become clear again, cease water addition. Construct
+a ternary phase diagram for Tween-20, peppermint oil, and water.
+
+= 5 Experiment Result and Discussion
+
+== 5.1 HPLC Concentration/Absorption-Peak-Area
+
+First we will draw the standard HPLC/absorption-peak-area curve of ibuprofen:
+
+#align(center)[
+  #figure(
+    table(
+      stroke: none,
+      align: 7 * (center, ),
+      columns: (1fr, ) + 6 * (auto, ),
+      inset: (x: 13pt, y: 10pt),
+      table.hline(),
+      table.header(
+        [Number],
+        [S1], [S2], [S3], [S4], [S5], [S6], [S7],
+      ),
+      table.hline(stroke: 0.4pt),
+      [Concentration ($μ"g"⋅"mL"^(-1)$)],
+      [2], [4], [6], [10], [20], [40],
+      [A],
+      [3054], [6462], [9363], [15065], [30227], [59270],
+      [Linear Regression Equation],
+      table.cell(colspan: 6)[$y = 1474.98 x + 415.43$]
+    ),
+    caption: "The Result of Standard HPLC Concentration/Absorption-Peak-Area Curve"
+  )
+]
+
+#align(center)[
+  #stack(dir: ltr)[
+    #box(width: 100%)[
+      #figure(
+        image("assets/ibuprofen-standard-hplc.svg"),
+        caption: "Standard HPLC Concentration/Absorption-Peak-Area Curve of Ibuprofen",
+      )
+    ]
+  ]
+]
