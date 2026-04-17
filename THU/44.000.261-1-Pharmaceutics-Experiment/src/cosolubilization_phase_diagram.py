@@ -329,7 +329,7 @@ def draw_ternary(
                     group_line_x = 0.5 + 0.5 * (group[1] - group[0]) / (
                         water + group[0] + group[1]
                     )
-                    group_line_y = 0.866 * (
+                    group_line_y = SQRT3 / 2 * (
                         1 - (group[0] + group[1]) / (water + group[0] + group[1])
                     )
                     ax.plot(
