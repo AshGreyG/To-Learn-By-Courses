@@ -378,7 +378,7 @@ def draw_ternary(
 
                 idx = int(input().strip())
                 tangent_pt_y = results[idx - 1][1]
-                if idx <= len(m) - 1 :
+                if idx <= len(m) :
                     draw_tangent_line(
                         ax,
                         spline_main,
@@ -411,7 +411,7 @@ def draw_ternary(
 
                 idx = int(input().strip())
                 tangent_pt_x = results[idx - 1][1]
-                if idx <= len(m) - 1 :
+                if idx <= len(m) :
                     draw_tangent_line(
                         ax,
                         spline_main,
@@ -454,7 +454,7 @@ def draw_ternary(
         plt.savefig(output, format="svg", bbox_inches="tight")
 
 def check(message: str) -> bool :
-    message.strip()
+    message = message.strip()
     if message.lower() == "y" or message.lower() == "yes" :
         return True
     else :
