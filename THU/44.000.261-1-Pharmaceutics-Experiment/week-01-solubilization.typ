@@ -239,7 +239,7 @@ Water System.
 2. After stirring, the samples should be allowed to stand for a period to
   facilitate the full entry of the drug into the micelles.
 
-=== 4.2.3 Effect of Solvent Additives on the Cloud Point of Tween-80
+=== 4.2.3 Effect of Solvent Additives on the Turbidity of Tween-80
 
 [Procedure]
 
@@ -250,11 +250,11 @@ in a constant temperature water bath. Stir gently while slowly increasing the
 heating temperature. Use a thermometer to accurately record the temperature at
 which the solution begins to turn turbid (this is also the temperature at which
 the solution returns to a clear and transparent state upon cooling); this
-temperature is defined as the cloud point.
+temperature is defined as the turbidity.
 
 [Operational Notes]
 
-1. The cloud point of non-ionic surfactants is influenced by factors such as their
+1. The turbidity non-ionic surfactants is influenced by factors such as their
   concentration and the presence of inorganic salts, alcohols, and the pH level in
   the solvent.
 
@@ -404,6 +404,7 @@ $ s = 50 × ((A - 415.43) / 1474.98) × 10^(-3) "g"⋅100"mL"^(-1) $
     caption: "Determination Results of Ibuprofen Solubility After the Addition of Tween-80 in Different Sequences",
   )
 ]
+<table-2-adding-order>
 
 To achieve the most efficient solubilization of Ibuprofen, the addition order is
 critical. For practical pharmaceutical preparation, mixing the drug directly with
@@ -464,7 +465,7 @@ sub-colloidal range (below 100 nm). The cloudy/milky appearance of Tween-20 and
 Tween-40 indicates the presence of larger aggregates or "coarse" micelles that
 scatter light (the Tyndall effect).
 
-== 5.4 Effect of Solvent Additives on the Cloud Point of Tween-80
+== 5.4 Effect of Solvent Additives on the Turbidity of Tween-80
 
 #align(center)[
   #figure(
@@ -646,6 +647,111 @@ side) to the top corner.
     ]
   ]
 ]
+
+= 6 Discussion Questions
+
+1. *Combined with experimental results, analyze and discuss the main factors
+  affecting the solubilization of poorly water-soluble drugs.*
+
+- *Nature of the Surfactant*: The length of the hydrophobic chain and the HLB
+  value significantly affect micellar capacity. For example, Tween-80 showed
+  superior solubilization for Ibuprofen compared to Tween-20 or 40.
+
+- *Nature of the Drug*: The drug's molecular weight, polarity, and crystal lattice
+  energy determine how easily it can be incorporated into micelles.
+
+- *Addition Order*: As seen in #link(<table-2-adding-order>)[#text(blue)[Table 2]],
+  the sequence in which water, surfactant, and drug are mixed affects the final
+  equilibrium solubility and system appearance.
+
+- *Additives and Temperature*: The presence of salts or sugars and the working
+  temperature (relative to the turbidity) can either enhance or decrease
+  solubilization efficiency.
+
+2. *Based on experimental results, analyze and discuss the possible mechanisms
+  of Diethylamine and Nicotinamide for the hydrotropy of Theophylline.*
+
+- Diethylamine (Salt Formation): Acts via a pH adjustment mechanism. It reacts
+  with the weakly acidic theophylline to form a highly soluble salt, drastically
+  increasing its aqueous concentration.
+
+- Nicotinamide (Molecular Complexation): Acts as a hydrotropic agent. It forms
+  non-covalent molecular complexes with theophylline (likely through π-π stacking),
+  which disrupts the drug's crystalline structure and improves its interaction
+  with water.
+
+3. *To prepare 100 mL of a 10% Peppermint Oil clear aqueous solution, what is the
+  minimum amount of Tween-20 required? How much Tween-20 must be added to ensure
+  the solution does not turn turbid upon further dilution with water?*
+
+According to the ternary cosolubilization phase diagram, we can draw the Tween-20
+-additive line to show at least how much Tween-20 should be added:
+
+Then we can calculate the interaction of phase transformation curve and Tween-20
+additive line with $["water"]\/["peppermint oil"] = 9$. So we can find the
+coordinate of this intersection is $(0.3954, 0.5603)$.
+
+Assume the density of 10% peppermint oil is still 1.0 g/mL, then the mass of
+water can be considered as 90g and mass of peppermint oil as 10g. This intersection
+corresponds to a mass percentage of Tween-20 as $28.12%$.
+
+Solve equation
+
+$ x/(x + 100) = 0.2812 $
+
+thus we need to add at least $39.12"g"$.
+
+#align(center)[
+  #stack(dir: ltr)[
+    #box[
+      #figure(
+        image(width: 70%, "assets/tween-20-additive-line.svg"),
+        caption: "cosolubilization phase diagram with Tween-20 Additive Line",
+      )
+    ]
+  ]
+]
+
+4. *Within what ratio range of Peppermint Oil and Tween-20 can the solution be
+  infinitely diluted without becoming turbid?*
+
+This corresponds to the area in our ternary diagram where a straight line drawn
+from the Water vertex (100%) to the Oil-Tween base stays entirely within the clear
+micro-emulsion region. And we can find the tangent line of phase transformation
+curve from top corner whose expression is $y = 2.045 x - 0.157$.
+
+We know that `param` passed to function `draw_additive_line` is `oil_to_tween20`,
+and the slope of this tangent line is $sqrt(3) (1 + p) \/ (1 - p)$ (here $p$
+represents the fraction `oil_to_tween20`), then
+
+$ sqrt(3) (1 + p) / (1 - p) = 2.045 $
+
+we can calculate the value of $p$ is $0.083$. Hence the ratio range of peppermint
+oil and Tween-20 is $[12.07, +∞)$.
+
+#align(center)[
+  #stack(dir: ltr)[
+    #box[
+      #figure(
+        image(width: 70%, "assets/tangent-line-top-corner.svg"),
+        caption: "cosolubilization phase diagram with tangent line at top corner",
+      )
+    ]
+  ]
+]
+
+5. *What are the main significances of determining the effect of additives on the
+  turbidity of non-ionic surfactants?*
+
+- *Formulation Stability*: It helps predict if a product will remain clear and
+  stable during storage or transport in different environments.
+
+- *Sterilization Safety*: Since many products are autoclaved (121∘C), knowing the
+  turbidity ensures the surfactant won't precipitate and lose its solubilizing
+  function during heating.
+
+- *Compatibility Testing*: It evaluates how common additives like NaCl or Glucose
+(which lower the turbidity via "salting-out") might compromise the formulation.
 
 #pagebreak()
 
