@@ -29,36 +29,6 @@ LABEL_OIL = "Peppermint Oil"
 
 SQRT3 = math.sqrt(3)
 
-def ternary_to_cartesian(
-    water_percent: float, oil_percent: float, tween_percent: float
-) -> tuple[float, float]:
-    """Transform the ternary percents to cartesian coordinate"""
-
-    h = SQRT3 / 2
-    per_oil = oil_percent / 100
-    per_tween = tween_percent / 100
-
-    x = per_oil / 2 + (1 - per_tween) / 2
-    y = h * (1 - per_tween - per_oil)
-    return x, y
-
-def cartesian_to_ternary(x: float, y: float) -> tuple[float, float, float]:
-    """Transform the cartesian coordinate to ternary percents"""
-
-    h = SQRT3 / 2
-    water = 1 - y / h
-    tween = 1 - x - y / (2 * h)
-    oil = x - y / (2 * h)
-    return water * 100, oil * 100, tween * 100
-
-def calculate_percentage(
-    tween: float, oil: float, water: float, tween_idx: int
-) -> float:
-    total = tween + oil + water
-    if total == 0:
-        return 0.0
-    return tween_idx / total * 100
-
 def print_table_content(tabs: int) -> None:
     def matters(group) -> str:
         matters_repr = ""
