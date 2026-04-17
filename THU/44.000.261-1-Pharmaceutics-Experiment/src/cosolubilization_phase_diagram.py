@@ -137,8 +137,19 @@ def compute_data_points(weights: list) -> tuple:
         points_w3_y,
     )
 
-def draw_spline_curve(ax, points_x: list, points_y: list, order: list) -> None:
+def draw_spline_curve(
+    ax,
+    spline_type: str,
+    points_x: list,
+    points_y: list,
+    order: list
+) -> None:
     h = SQRT3 / 2
+
+    if spline_type == "ILL" :
+        line_style = "dashed"
+    elif spline_type == "MAYBE" :
+        line_style = "solid"
 
     order_x = [1]
     order_y = [0]
@@ -149,7 +160,7 @@ def draw_spline_curve(ax, points_x: list, points_y: list, order: list) -> None:
     tck, _ = splprep([order_x, order_y], s=0.0)
     u_new = np.linspace(0, 1, 300)
     smooth_x, smooth_y = splev(u_new, tck)
-    ax.plot(smooth_x, smooth_y, color="orange", lw=1.2, alpha=0.6)
+    ax.plot(smooth_x, smooth_y, color="orange", lw=1.2, alpha=0.6, ls=line_style)
 
     order_top = order[-4:]
     order_top_x = [points_x[i - 1] for i in order_top]
@@ -159,7 +170,7 @@ def draw_spline_curve(ax, points_x: list, points_y: list, order: list) -> None:
 
     top_tck, _ = splprep([order_top_x, order_top_y], s=0.0)
     top_smooth_x, top_smooth_y = splev(u_new, top_tck)
-    ax.plot(top_smooth_x, top_smooth_y, color="orange", lw=1.2, alpha=0.6)
+    ax.plot(top_smooth_x, top_smooth_y, color="orange", lw=1.2, alpha=0.6, ls=line_style)
 
 def draw_additive_line(ax, line_type: str, param: float) -> tuple:
     h = SQRT3 / 2
@@ -258,7 +269,8 @@ def draw_ternary(
                         ls="dashed",
                     )
 
-    draw_spline_curve(ax, points_x, points_y, ORDER_ILL_SPLINE)
+    draw_spline_curve(ax, "ILL", points_x, points_y, ORDER_ILL_SPLINE)
+    draw_spline_curve(ax, "MAYBE", points_x, points_y, ORDER_MAYBE_SPLINE)
 
     spline_tck, _ = splprep([points_x, points_y], s=0.0)
 
