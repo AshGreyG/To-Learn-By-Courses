@@ -410,7 +410,7 @@ def draw_ternary(
                 print("→ Choose one intersection from above")
 
                 idx = int(input().strip())
-                tangent_pt_x = results[idx - 1][1]
+                tangent_pt_x = results[idx - 1][0]
                 if idx <= len(m) :
                     draw_tangent_line(
                         ax,
@@ -454,11 +454,8 @@ def draw_ternary(
         plt.savefig(output, format="svg", bbox_inches="tight")
 
 def check(message: str) -> bool :
-    message = message.strip()
-    if message.lower() == "y" or message.lower() == "yes" :
-        return True
-    else :
-        return False
+    message = message.strip().lower()
+    return message in {"y", "yes"}
 
 def main() -> None:
     print("→ Welcome to a program for drawing ternary cosolubilization phase diagram!")
