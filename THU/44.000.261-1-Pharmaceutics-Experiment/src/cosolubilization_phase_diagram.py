@@ -1,12 +1,9 @@
-# ---
-# principle: The Python script to print the table content of weight records of
-# cosolubilization phase diagram. And also can be used to draw the
-# cosolubilization phase diagram.
-# ---
-
+import math
 import matplotlib.pyplot as plt
 import numpy as np
+
 from scipy.interpolate import splprep, splev
+from scipy.optimize import fsolve
 
 WEIGHTS = [
     (0.50, 4.50, 0.10, -1, -1),
@@ -18,207 +15,312 @@ WEIGHTS = [
     (3.60, 1.40, 0.44, 0.72, 3.47),
     (3.70, 1.30, 0.57, 1.50, 4.16),
     (3.80, 1.20, 5.47, -1, -1),
-    (4.00, 1.00, 9.41, -1, -1)
+    (4.00, 1.00, 9.41, -1, -1),
 ]
-""""In (Tween-20, oil, water) order weight records"""
+"""WEIGHTS is in (Tween-20, Peppermint Oil, W1, W2, W3) order"""
+ORDER_ILL_SPLINE = [1, 2, 3, 4, 7, 10, 13, 16, 14, 17, 11, 5, 6, 9, 12, 15, 18, 19, 20]
+"""Ill because the 14 data point will cause the B-spline to become concave"""
+ORDER_MAYBE_SPLINE = [1, 2, 3, 4, 7, 10, 13, 16, 17, 11, 5, 6, 9, 12, 15, 18, 19, 20]
+"""Maybe because after dropping 14 data point will cause the B-spline to become convex"""
 
-ORDER_ILL_SPLINE = [
-    1, 2, 3, 4, 7, 10, 13, 16, 14, 17, 11, 5, 6, 9, 12,
-    15, 18, 19, 20
-]
-"""This order should be extracted after the points are plotted"""
-ORDER_MAYBE_SPLINE = [
-    1, 2, 3, 4, 7, 10, 13, 16, 17, 11, 5, 6, 9, 12,
-    15, 18, 19, 20
-]
+LABEL_TWEEN = "Tween-20"
+LABEL_WATER = "Water"
+LABEL_OIL = "Peppermint Oil"
 
-def print_table_content(tabs: int) -> None :
-    def matters(group) -> str :
-        """This function returns the string representation of matters group"""
+SQRT3 = math.sqrt(3)
+
+def ternary_to_cartesian(
+    water_percent: float, oil_percent: float, tween_percent: float
+) -> tuple[float, float]:
+    """Transform the ternary percents to cartesian coordinate"""
+
+    h = SQRT3 / 2
+    per_oil = oil_percent / 100
+    per_tween = tween_percent / 100
+
+    x = per_oil / 2 + (1 - per_tween) / 2
+    y = h * (1 - per_tween - per_oil)
+    return x, y
+
+def cartesian_to_ternary(x: float, y: float) -> tuple[float, float, float]:
+    """Transform the cartesian coordinate to ternary percents"""
+
+    h = SQRT3 / 2
+    water = 1 - y / h
+    tween = 1 - x - y / (2 * h)
+    oil = x - y / (2 * h)
+    return water * 100, oil * 100, tween * 100
+
+def calculate_percentage(
+    tween: float, oil: float, water: float, tween_idx: int
+) -> float:
+    total = tween + oil + water
+    if total == 0:
+        return 0.0
+    return tween_idx / total * 100
+
+def print_table_content(tabs: int) -> None:
+    def matters(group) -> str:
         matters_repr = ""
-        for i in range(5) :
-            if group[i] != -1 :
+        for i in range(5):
+            if group[i] != -1:
                 matters_repr += f"[{group[i]:.2f}], "
-            else :
+            else:
                 matters_repr += f"[/], "
         return matters_repr
 
-    def percentage(group) -> str :
-        """This function returns the string representation of percentage
-        group, in (water, oil, Tween-20) order
-        """
+    def percentage(group) -> str:
         percentage_repr = ""
-        for i in range(2, 5) :
-            if group[i] != -1 :
+        for i in range(2, 5):
+            if group[i] != -1:
                 per = group[i] / (group[i] + group[0] + group[1]) * 100
                 percentage_repr += f"[{per:.2f}], "
-            else :
+            else:
                 percentage_repr += "[/], "
 
-        for i in range(2, 5) :
-            if group[i] != -1 :
+        for i in range(2, 5):
+            if group[i] != -1:
                 per = group[1] / (group[i] + group[0] + group[1]) * 100
                 percentage_repr += f"[{per:.2f}], "
-            else :
+            else:
                 percentage_repr += "[/], "
 
-        for i in range(2, 5) :
-            if group[i] != -1 :
+        for i in range(2, 5):
+            if group[i] != -1:
                 per = group[0] / (group[i] + group[0] + group[1]) * 100
                 percentage_repr += f"[{per:.2f}], "
-            else :
+            else:
                 percentage_repr += "[/], "
 
         return percentage_repr
 
-    for index, group in enumerate(WEIGHTS) :
+    for index, group in enumerate(WEIGHTS):
         row = ""
         row += f"[{index + 1}], "
         row += matters(group)
         row += percentage(group)
 
-        for i in range(tabs) :
+        for _ in range(tabs):
             row = "  " + row
 
         print(row)
 
-def draw_ternary(output: str, water_line: bool, debug: bool = False) -> None :
-    fig, ax = plt.subplots(figsize=(8, 8))
-    h = np.sin(np.deg2rad(60))
-    # Height of equilateral triangle
+def draw_triangle_boundary(ax) -> None:
+    h = SQRT3 / 2
+    ax.plot([0, 1, 0.5, 0], [0, 0, h, 0], color="black", lw=2)
 
-    # 1. Draw the Outer Boundary, circular
-    ax.plot([0, 1, 0.5, 0], [0, 0, h, 0], color='black', lw=2)
-
-    # 2. Draw the Grid Lines (10% increments)
+def draw_grid_lines(ax) -> None:
+    h = SQRT3 / 2
     for i in range(1, 10):
         f = i / 10
-        # Lines parallel to right side (Water)
-        ax.plot([f * 0.5, f], [f * h, 0], color='gray', lw=0.5, alpha=0.6)
-        # Lines parallel to bottom (Oil)
-        ax.plot([f * 0.5, 1 - f * 0.5], [f * h, f * h], color='gray', lw=0.5, alpha=0.6)
-        # Lines parallel to left side (Tween)
-        ax.plot([f, 0.5 + f*0.5 ], [0, (1 - f) * h], color='gray', lw=0.5, alpha=0.6)
+        ax.plot([f * 0.5, f], [f * h, 0], color="gray", lw=0.5, alpha=0.6)
+        ax.plot([f * 0.5, 1 - f * 0.5], [f * h, f * h], color="gray", lw=0.5, alpha=0.6)
+        ax.plot([f, 0.5 + f * 0.5], [0, (1 - f) * h], color="gray", lw=0.5, alpha=0.6)
 
-    # 3. Add Labels
-    ax.text(0.45, h + 0.05, '0', ha='center', fontweight='bold')
-    ax.text(0.55, h + 0.05, '100', ha="center", fontweight='bold')
-    ax.text(-0.1, 0, '100', ha='center', fontweight='bold')
-    ax.text(-0.03, -0.06, '0', ha='center', fontweight='bold')
-    ax.text(1.03, -0.06, '100', ha='center', fontweight='bold')
-    ax.text(1.1, 0, '0', ha='center', fontweight='bold')
+def draw_labels(ax) -> None:
+    h = SQRT3 / 2
+    ax.text(0.45, h + 0.05, "0", ha="center", fontweight="bold")
+    ax.text(0.55, h + 0.05, "100", ha="center", fontweight="bold")
+    ax.text(-0.1, 0, "100", ha="center", fontweight="bold")
+    ax.text(-0.03, -0.06, "0", ha="center", fontweight="bold")
+    ax.text(1.03, -0.06, "100", ha="center", fontweight="bold")
+    ax.text(1.1, 0, "0", ha="center", fontweight="bold")
 
-    ax.text(0.15, h / 2, 'Tween-20', rotation=60, ha='center', fontweight='bold')
-    ax.text(0.85, h / 2, 'Water', rotation=-60, ha='center', fontweight='bold')
-    ax.text(0.5, -0.1, 'Peppermint Oil', ha='center', fontweight='bold')
+    ax.text(0.15, h / 2, LABEL_TWEEN, rotation=60, ha="center", fontweight="bold")
+    ax.text(0.85, h / 2, LABEL_WATER, rotation=-60, ha="center", fontweight="bold")
+    ax.text(0.5, -0.1, LABEL_OIL, ha="center", fontweight="bold")
 
-    points_w1_x = []
-    points_w1_y = []
-    points_w2_x = []
-    points_w2_y = []
-    points_w3_x = []
-    points_w3_y = []
-    points_x = []
-    points_y = []
-    count = 0
-    for group in WEIGHTS :
-        for i in range(2, 5) :
-            if group[i] != -1 :
-                count += 1
+def compute_data_points(weights: list) -> tuple:
+    h = SQRT3 / 2
+    points_w1_x, points_w1_y = [], []
+    points_w2_x, points_w2_y = [], []
+    points_w3_x, points_w3_y = [], []
+    points_x, points_y = [], []
+
+    for group in weights:
+        for i in range(2, 5):
+            if group[i] != -1:
                 per_oil = group[1] / (group[0] + group[1] + group[i])
                 per_tween = group[0] / (group[0] + group[1] + group[i])
-
-                # The parallel line through per_oil is
-                #   <y = 2h x - 2h * per_oil>
-                # The parallel line through per_tween is
-                #   <y = -2h x + 2h * (1 - per_tween)>
-                # -2h * (1 - per_tween) / 2 + d = (1 - per_tween) * h
                 x = per_oil / 2 + (1 - per_tween) / 2
                 y = h * (1 - per_tween - per_oil)
-
                 points_x.append(x)
                 points_y.append(y)
 
-                if i == 2 :
+                if i == 2:
                     points_w1_x.append(x)
                     points_w1_y.append(y)
-                elif i == 3 :
+                elif i == 3:
                     points_w2_x.append(x)
                     points_w2_y.append(y)
-                elif i == 4 :
+                elif i == 4:
                     points_w3_x.append(x)
                     points_w3_y.append(y)
+    return (
+        points_x,
+        points_y,
+        points_w1_x,
+        points_w1_y,
+        points_w2_x,
+        points_w2_y,
+        points_w3_x,
+        points_w3_y,
+    )
 
-                if debug :
-                    ax.text(x + 0.02, y + 0.02, str(count))
-                # This is a debug statement
+def draw_spline_curve(ax, points_x: list, points_y: list, order: list) -> None:
+    h = SQRT3 / 2
 
-                if water_line :
+    order_x = [1]
+    order_y = [0]
+    for i in order:
+        order_x.append(points_x[i - 1])
+        order_y.append(points_y[i - 1])
+
+    tck, _ = splprep([order_x, order_y], s=0.0)
+    u_new = np.linspace(0, 1, 300)
+    smooth_x, smooth_y = splev(u_new, tck)
+    ax.plot(smooth_x, smooth_y, color="orange", lw=1.2, alpha=0.6)
+
+    order_top = order[-4:]
+    order_top_x = [points_x[i - 1] for i in order_top]
+    order_top_y = [points_y[i - 1] for i in order_top]
+    order_top_x.append(0.5)
+    order_top_y.append(h)
+
+    top_tck, _ = splprep([order_top_x, order_top_y], s=0.0)
+    top_smooth_x, top_smooth_y = splev(u_new, top_tck)
+    ax.plot(top_smooth_x, top_smooth_y, color="orange", lw=1.2, alpha=0.6)
+
+def draw_additive_line(ax, line_type: str, param: float) -> tuple:
+    h = SQRT3 / 2
+    if line_type == "water":
+        f = (1 + param) / (1 - param)
+        x = np.linspace(0.5 - 1 / (2 * f), 0.5, 300)
+        y = 2 * h * f * (x - 0.5) + h
+        m = 2 * h * f
+        c = h - 0.5 * m
+    elif line_type == "tween":
+        f = param / (param + 2)
+        x = np.linspace(0, (param + 2) / (2 * param + 2), 300)
+        y = 2 * h * f * x
+        m = 2 * h * f
+        c = 0
+    elif line_type == "oil":
+        f = (-param - 2) / (2 * h * param)
+        x = np.linspace((param + 2) / (4 * param + 2), 1, 300)
+        y = f * (x - 1)
+        m = f
+        c = -f
+    else:
+        return 0.0, 0.0
+
+    ax.plot(x, y, color="brown", lw=0.8, alpha=0.6, ls="dashed")
+    return m, c
+
+def find_intersections(ax, spline_tck, m: float, c: float) -> None:
+    def objective(u):
+        spline_pt = splev(u, spline_tck)
+        return spline_pt[1] - (m * spline_pt[0] + c)
+
+    u_samples = np.linspace(0, 1, 1000)
+    y_samples = [objective(u) for u in u_samples]
+
+    for i in range(len(y_samples) - 1):
+        if y_samples[i] * y_samples[i + 1] < 0:
+            root = fsolve(objective, x0=u_samples[i])[0]
+            intersection = splev(root, spline_tck)
+            print(f"→ Find intersection point ({intersection[0]},{intersection[1]})")
+            ax.scatter([intersection[0]], [intersection[1]], color="purple", marker="x")
+
+def setup_axis(ax) -> None:
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+def draw_ternary(
+    output: str = "output.svg",
+    show: bool = True,
+    water_line: bool = False,
+    water_to_tween20: float = 0.0,
+    water_to_oil: float = 0.0,
+    oil_to_tween20: float = 0.0,
+    debug: bool = False,
+) -> None:
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    draw_triangle_boundary(ax)
+    draw_grid_lines(ax)
+    draw_labels(ax)
+
+    (
+        points_x,
+        points_y,
+        points_w1_x,
+        points_w1_y,
+        points_w2_x,
+        points_w2_y,
+        points_w3_x,
+        points_w3_y,
+    ) = compute_data_points(WEIGHTS)
+
+    count = 0
+    for group in WEIGHTS:
+        for i in range(2, 5):
+            if group[i] != -1:
+                count += 1
+                x_idx = count - 1
+                if debug:
+                    ax.text(points_x[x_idx] + 0.02, points_y[x_idx] + 0.02, str(count))
+
+                if water_line:
                     water = np.linspace(0, 50, 200)
-                    group_line_x = 0.5 + 0.5 * (group[1]- group[0]) / (water + group[0] + group[1])
-                    group_line_y = h * (1 - (group[0] + group[1]) / (water + group[0] + group[1]))
-                    ax.plot(group_line_x, group_line_y, color="brown", lw=0.8, alpha=0.6, ls="dashed")
+                    group_line_x = 0.5 + 0.5 * (group[1] - group[0]) / (
+                        water + group[0] + group[1]
+                    )
+                    group_line_y = 0.866 * (
+                        1 - (group[0] + group[1]) / (water + group[0] + group[1])
+                    )
+                    ax.plot(
+                        group_line_x,
+                        group_line_y,
+                        color="brown",
+                        lw=0.8,
+                        alpha=0.6,
+                        ls="dashed",
+                    )
 
-    # Draw the ill spline curve, that's because data 14 is ill
+    draw_spline_curve(ax, points_x, points_y, ORDER_ILL_SPLINE)
 
-    def __internal_draw_ill_spline() -> None :
-        """Because we don't want to expose the internal variables"""
-        # Append the right corner
-        order_x = []
-        order_y = []
-        order_x.append(1)
-        order_y.append(0)
-        for i in ORDER_ILL_SPLINE :
-            order_x.append(points_x[i - 1])
-            order_y.append(points_y[i - 1])
+    spline_tck, _ = splprep([points_x, points_y], s=0.0)
 
-        tck, u = splprep([order_x, order_y], s=0.0)
-        u_new = np.linspace(0, 1, 300)
-        smooth_x, smooth_y = splev(u_new, tck)
+    if oil_to_tween20 > 0:
+        m, c = draw_additive_line(ax, "water", oil_to_tween20)
+        find_intersections(ax, spline_tck, m, c)
+    if water_to_oil > 0:
+        m, c = draw_additive_line(ax, "tween", water_to_oil)
+        find_intersections(ax, spline_tck, m, c)
+    if water_to_tween20 > 0:
+        m, c = draw_additive_line(ax, "oil", water_to_tween20)
+        find_intersections(ax, spline_tck, m, c)
 
-        ax.plot(smooth_x, smooth_y, color='orange', lw=1.2, alpha=0.6, ls="dotted")
-        # Append the top corner
-        ax.plot([order_x[-1], 0.5], [order_y[-1], h], color='orange', lw=1.2, alpha=0.6, ls="dotted")
-
-    def __internal_draw_maybe_spline() -> None :
-        """Because we don't want to expose the internal variables"""
-        # Append the right corner
-        order_x = []
-        order_y = []
-        order_x.append(1)
-        order_y.append(0)
-        for i in ORDER_MAYBE_SPLINE :
-            order_x.append(points_x[i - 1])
-            order_y.append(points_y[i - 1])
-
-        tck, u = splprep([order_x, order_y], s=0.0)
-        u_new = np.linspace(0, 1, 300)
-        smooth_x, smooth_y = splev(u_new, tck)
-
-        ax.plot(smooth_x, smooth_y, color='orange', lw=1.2, alpha=0.6)
-        # Append the top corner
-        ax.plot([order_x[-1], 0.5], [order_y[-1], h], color='orange', lw=1.2, alpha=0.6)
-
-    __internal_draw_ill_spline()
-    __internal_draw_maybe_spline()
-
-    # Draw the data point using marker x
     ax.scatter(points_w1_x, points_w1_y, marker="x", color="#e67e80")
     ax.scatter(points_w2_x, points_w2_y, marker="x", color="#a7c080")
     ax.scatter(points_w3_x, points_w3_y, marker="x", color="#7fbbb3")
 
-    ax.set_aspect('equal')
-    ax.axis('off')
-    plt.savefig(output, format="svg", bbox_inches="tight")
+    setup_axis(ax)
 
-def main() -> None :
+    if show:
+        plt.show()
+    else:
+        plt.savefig(output, format="svg", bbox_inches="tight")
+
+def main() -> None:
     p = False
-    if p :
+    if p:
         tabs = int(input().strip())
         print_table_content(tabs)
-    else :
+    else:
         output = input().strip()
-        draw_ternary(output, True)
+        draw_ternary(output, show=True, water_to_oil=9)
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     main()
