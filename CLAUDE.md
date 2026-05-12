@@ -53,6 +53,10 @@ wake compile SocialPlatform/Chainlink-Web3-Tutorial/2-FundMe-and-ERC20/FundMe.so
 - Solidity version 0.8.20+
 - Chainlink contracts imported via npm remappings
 
+## Typst Convention
+
+Prefer Unicode characters over Typst math symbols (e.g., `μ` rather than `#math.mu`).
+
 ## Code Organization
 
 - **MIT/6.006/**: Algorithm implementations with inline examples, uses `typing`
