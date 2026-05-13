@@ -15,16 +15,16 @@
 - Experiment Name: *Isolation of Total RNA from Animal/Plant Tissues, Gel
   Electrophoresis and Reverse Transcription PCR (RT-PCR)*
 - Experiment Date: *#experiment-date.display()*
-- Experiment Partners: TBD
+- Experiment Partners: Jiaxin Liang
 
 = 1 Experiment Purpose
 
-- Master the principles and techniques of total RNA isolation from animal or plant
-  tissues using the TRIzol reagent.
+- Master the principles and techniques of total RNA isolation from animal or
+  plant tissues using the TRIzol reagent.
 - Assess RNA integrity and quality by native agarose gel electrophoresis and
   spectrophotometry.
-- Understand the principles of reverse transcription and perform first-strand cDNA
-  synthesis.
+- Understand the principles of reverse transcription and perform first-strand
+  cDNA synthesis.
 - Design specific primers and amplify target genes by PCR.
 - Familiarize with the applications of RT-PCR in gene expression analysis.
 
@@ -43,7 +43,8 @@ The major types of RNA include:
   protein synthesis ($approx 1-3%$ of total RNA).
 - *ribosomal RNA (rRNA)* — structural and catalytic component of ribosomes
   ($approx 80-90%$ of total RNA).
-- *transfer RNA (tRNA)* — delivers amino acids to the ribosome during translation.
+- *transfer RNA (tRNA)* — delivers amino acids to the ribosome during
+  translation.
 - *non-coding RNAs* — regulatory RNAs, including lncRNA, miRNA, etc.
 
 == 2.2 Total RNA Isolation by TRIzol Reagent
@@ -92,13 +93,13 @@ eukaryotic mRNAs, selectively priming the reverse transcription of mRNA.
 
 PCR (Polymerase Chain Reaction) amplifies specific DNA sequences using:
 - *Template* — first-strand cDNA (or total RNA for negative control).
-- *Forward and reverse primers* — specifically designed to flank the target
-  gene sequence.
+- *Forward and reverse primers* — specifically designed to flank the target gene
+  sequence.
 - *Taq DNA polymerase* — thermostable DNA polymerase.
 - *dNTPs* — deoxynucleotide triphosphates.
 
-The thermal cycling program includes denaturation (94°C), annealing (55°C--60°C),
-and extension (72°C).
+The thermal cycling program includes denaturation (94°C), annealing
+(55°C--60°C), and extension (72°C).
 
 == 2.6 Primer Design Principles
 
@@ -122,7 +123,8 @@ and extension (72°C).
 - Isopropanol.
 - 75% Ethanol (prepared with DEPC-treated water).
 - RNase-free water (DEPC-treated).
-- 10× MOPS running buffer (0.4 M MOPS, pH 7.0; 0.1 M sodium acetate; 0.01 M EDTA).
+- 10× MOPS running buffer (0.4 M MOPS, pH 7.0; 0.1 M sodium acetate; 0.01 M
+  EDTA).
 - Agarose.
 - 3× RNA loading buffer.
 - Reverse Transcription 10× Buffer.
@@ -156,32 +158,32 @@ and extension (72°C).
 == 4.1 Total RNA Isolation
 
 1. Snap-freeze about 100 mg of fresh tissues in liquid nitrogen. Different
-   groups use different tissues.
+  groups use different tissues.
 
 2. Grind the sample into fine powder in liquid nitrogen with mortar and pestle,
-   transfer the powder to a 1.5 mL tube pre-chilled with liquid nitrogen.
+  transfer the powder to a 1.5 mL tube pre-chilled with liquid nitrogen.
 
 3. Add 1 mL TRIzol Reagent and mix by vortex or pipetting. Incubate the
-   homogenized samples for 5 min at room temperature.
+  homogenized samples for 5 min at room temperature.
 
 4. Add 200 µL chloroform. Make sure the cap is tightly closed. Shake tubes
-   vigorously or vortex for 10 s and incubate at room temperature for 2 min.
+  vigorously or vortex for 10 s and incubate at room temperature for 2 min.
 
-5. Centrifuge at 12,000 × g for 15 min at 4°C. After centrifugation, the
-   mixture separates into a lower red phase, an interphase, and a colorless
-   upper aqueous phase (RNA remains exclusively in the aqueous phase).
+5. Centrifuge at 12,000 × g for 15 min at 4°C. After centrifugation, the mixture
+  separates into a lower red phase, an interphase, and a colorless upper aqueous
+  phase (RNA remains exclusively in the aqueous phase).
 
 6. Transfer the aqueous phase to a clean 1.5 mL tube. Do NOT disturb the
-   interphase. Precipitate RNA by adding 0.5 mL of isopropanol and mix.
-   Incubate at room temperature for 10 min.
+  interphase. Precipitate RNA by adding 0.5 mL of isopropanol and mix. Incubate
+  at room temperature for 10 min.
 
 7. Centrifuge at 12,000 × g for 10 min at 4°C, carefully remove supernatant.
 
-8. Wash the RNA pellet with 1 mL 75% ethanol. Centrifuge at 7,500 × g for
-   5 min at 4°C, carefully remove supernatant.
+8. Wash the RNA pellet with 1 mL 75% ethanol. Centrifuge at 7,500 × g for 5 min
+  at 4°C, carefully remove supernatant.
 
 9. Air dry the RNA pellet for about 2 min. Dissolve RNA in 40 µL RNase-free
-   water. Mark this tube with your group number.
+  water. Mark this tube with your group number.
 
 10. Store the purified RNA sample at -80°C until next week.
 
@@ -204,26 +206,26 @@ Measure RNA concentration on a Nanophotometer. Record:
 3. Run electrophoresis at 120 V for about 20 min.
 
 4. Visualize under UV light. Expected yields per mg tissue: liver 5--10 µg,
-   kidney 3--6 µg, spleen 2--5 µg, lung 1.5--4 µg, heart and brain 1--3 µg.
+  kidney 3--6 µg, spleen 2--5 µg, lung 1.5--4 µg, heart and brain 1--3 µg.
 
 == 4.3 Primer Preparation
 
 1. Centrifuge primer tubes at 5,000 rpm for 1 min before opening (lyophilized
-   powder is invisible and can easily disperse).
+  powder is invisible and can easily disperse).
 
 2. Prepare working solution (10 µM): add ten times the recommended volume (µL)
-   of RNase-free water. Vortex to fully resuspend. Let sit for at least 10 min
-   before use.
+  of RNase-free water. Vortex to fully resuspend. Let sit for at least 10 min
+  before use.
 
 3. Prepare stock solution (100 µM): resuspend primers in the recommended volume
-   of TE buffer (10 mM Tris, 0.1 mM EDTA, pH 8.0).
+  of TE buffer (10 mM Tris, 0.1 mM EDTA, pH 8.0).
 
 == 4.4 Reverse Transcription (First-Strand cDNA Synthesis)
 
 1. Place RNA sample and PCR rack on ice.
 
 2. Transfer 1 µg total RNA into a PCR tube, incubate at 70°C for 10 min,
-   immediately return the tube on ice and keep for 2 min.
+  immediately return the tube on ice and keep for 2 min.
 
 3. Prepare a 20 µL reverse transcription reaction:
 
@@ -254,7 +256,7 @@ Measure RNA concentration on a Nanophotometer. Record:
   ]
 
 4. Incubate the reaction at 42°C for 15 min, heat at 95°C for 5 min, and
-   incubate on ice for 5 min.
+  incubate on ice for 5 min.
 
 == 4.5 PCR Amplification of Specific Genes
 
@@ -315,12 +317,7 @@ Measure RNA concentration on a Nanophotometer. Record:
         align: (center, center, center, center),
         inset: (x: 10pt, y: 6pt),
         table.hline(),
-        table.header(
-          [],
-          [Experimental (E)],
-          [Positive (+)],
-          [Negative (-)],
-        ),
+        table.header([], [Experimental (E)], [Positive (+)], [Negative (-)]),
         table.hline(stroke: 0.4pt),
         [Template (2 µL)],
         [first-strand cDNA],
@@ -364,54 +361,55 @@ Measure RNA concentration on a Nanophotometer. Record:
 
 1. Prepare 1.2--2% agarose gel in 1× TAE or TBE buffer.
 
-2. Mix PCR products with loading buffer and load onto gel along with a 2 Kb
-   DNA marker.
+2. Mix PCR products with loading buffer and load onto gel along with a 2 Kb DNA
+  marker.
 
 3. Run electrophoresis.
 
 4. Visualize PCR products under UV illumination.
 
 5. Transfer 100 µL of forward primer into a labeled PCR tube for Sanger
-   sequencing.
+  sequencing.
 
 = 5 Experiment Result and Discussion
 
 == 5.1 RNA Concentration and Purity
 
-  #figure(
-    table(
-      stroke: none,
-      columns: (auto, auto, auto, auto),
-      align: (center, center, center, center),
-      inset: (x: 20pt, y: 6pt),
-      table.hline(),
-      table.header(
-        [Tissue / Sample],
-        [Concentration (ng/µL)],
-        [$A_260 \/ A_280$],
-        [$A_260 \/ A_230$],
-      ),
-      table.hline(stroke: 0.4pt),
-      [Group Sample (*kidney*)],
-      [1947.7],
-      [2.073],
-      [2.247],
-      table.hline(),
+#figure(
+  table(
+    stroke: none,
+    columns: (auto, auto, auto, auto),
+    align: (center, center, center, center),
+    inset: (x: 20pt, y: 6pt),
+    table.hline(),
+    table.header(
+      [Tissue / Sample],
+      [Concentration (ng/µL)],
+      [$A_260 \/ A_280$],
+      [$A_260 \/ A_230$],
     ),
-    caption: "RNA Concentration and Purity",
-  )
+    table.hline(stroke: 0.4pt),
+    [Group Sample (*kidney*)],
+    [1947.7],
+    [2.073],
+    [2.247],
+    table.hline(),
+  ),
+  caption: "RNA Concentration and Purity",
+)
 
-The kidney sample yielded $1947.7 "ng"⋅"µL"^(-1) × 40 "µL" = 77.9 "µg"$ total RNA.
-The expected yield for kidney tissue is 3--6 µg per mg tissue. Our result suggests
-approximately $77.9 "µg" \/ 4 "µg" ⋅ "mg"^(-1) ≈ 19.5 "mg"$ tissue equivalent
-was successfully extracted, which is reasonable considering losses during phase
-separation and precipitation steps.
+The kidney sample yielded $1947.7 "ng"⋅"µL"^(-1) × 40 "µL" = 77.9 "µg"$ total
+RNA. The expected yield for kidney tissue is 3--6 µg per mg tissue. Our result
+suggests approximately $77.9 "µg" \/ 4 "µg" ⋅ "mg"^(-1) ≈ 19.5 "mg"$ tissue
+equivalent was successfully extracted, which is reasonable considering losses
+during phase separation and precipitation steps.
 
-The $A_260 \/ A_280$ ratio of 2.073 falls within the acceptable range for pure RNA
-(1.8--2.2), indicating minimal protein contamination. The $A_260 \/ A_230$ ratio of
-2.247 ( > 1.8) confirms the absence of significant carryover from phenol, guanidine
-thiocyanate, or other organic contaminants from the TRIzol extraction. Overall, the
-RNA purity is satisfactory for downstream RT-PCR applications.
+The $A_260 \/ A_280$ ratio of 2.073 falls within the acceptable range for pure
+RNA (1.8--2.2), indicating minimal protein contamination. The $A_260 \/ A_230$
+ratio of 2.247 ( > 1.8) confirms the absence of significant carryover from
+phenol, guanidine thiocyanate, or other organic contaminants from the TRIzol
+extraction. Overall, the RNA purity is satisfactory for downstream RT-PCR
+applications.
 
 == 5.2 RNA Integrity by Gel Electrophoresis
 
@@ -427,16 +425,16 @@ RNA purity is satisfactory for downstream RT-PCR applications.
 ]
 
 The native agarose gel electrophoresis result for the kidney total RNA sample is
-shown in @rna-gel. Two distinct bands are clearly visible, corresponding
-to the 28S rRNA (upper band, approx. 4.7 kb in higher eukaryotes) and 18S rRNA
-(lower band, approx. 1.9 kb). The 28S band is approximately twice as intense as
-the 18S band, indicating that the RNA is largely intact with minimal degradation.
-No significant smearing is observed between or below the rRNA bands, which
-confirms that RNase activity was effectively inhibited throughout the isolation
+shown in @rna-gel. Two distinct bands are clearly visible, corresponding to the
+28S rRNA (upper band, approx. 4.7 kb in higher eukaryotes) and 18S rRNA (lower
+band, approx. 1.9 kb). The 28S band is approximately twice as intense as the 18S
+band, indicating that the RNA is largely intact with minimal degradation. No
+significant smearing is observed between or below the rRNA bands, which confirms
+that RNase activity was effectively inhibited throughout the isolation
 procedure. A faint band above the 28S rRNA position may represent residual
 genomic DNA contamination, though its intensity is negligible and did not
-interfere with subsequent RT-PCR. The integrity assessment is consistent with the
-spectrophotometric data ($A_260\/A_280 = 2.073$, $A_260\/A_230 = 2.247$),
+interfere with subsequent RT-PCR. The integrity assessment is consistent with
+the spectrophotometric data ($A_260\/A_280 = 2.073$, $A_260\/A_230 = 2.247$),
 confirming that the isolated RNA is of sufficient quality for reverse
 transcription and gene expression analysis.
 
@@ -450,10 +448,7 @@ transcription and gene expression analysis.
     inset: (x: 20pt, y: 6pt),
     table.hline(),
     table.header(
-      [Reaction],
-      [Template],
-      [Primers],
-      [Expected Product Size (bp)],
+      [Reaction], [Template], [Primers], [Expected Product Size (bp)]
     ),
     table.hline(stroke: 0.4pt),
     [Experimental (E)], [cDNA], [Gapdh F + R], [344],
@@ -494,8 +489,8 @@ other two reactions.
 Notably, the RNA quality assessment in Sections 5.1 and 5.2 confirmed that the
 total RNA was of good integrity and purity ($A_260\/A_280 = 2.073$, intact rRNA
 bands at ~2:1 ratio). Therefore, RNA degradation is unlikely to be the primary
-cause of failure. Possible troubleshooting steps include: verifying the
-activity of the reverse transcriptase and Taq polymerase, repeating the reverse
+cause of failure. Possible troubleshooting steps include: verifying the activity
+of the reverse transcriptase and Taq polymerase, repeating the reverse
 transcription with fresh reagents and a positive control RNA template, checking
 the annealing temperature and primer specificity, and including a no-reverse-
 transcriptase control to distinguish RT failure from PCR inhibition.
@@ -513,24 +508,24 @@ gene sequence (NM_008084).
 = 6 Discussion Questions
 
 1. *How is RNA separated from DNA during the total RNA extraction process using
-   TRIzol reagent?*
+  TRIzol reagent?*
 
-   RNA is separated from DNA through the *acid-guanidinium-phenol-chloroform
-   (AGPC)* extraction principle. TRIzol reagent contains phenol and guanidine
-   thiocyanate at acidic pH (approximately 4--6). After homogenization and
-   phase separation with chloroform, the mixture separates into three phases
-   based on differential solubility at acidic pH:
-   - A lower organic phase (phenol-chloroform) containing proteins and lipids.
-   - An interphase containing DNA.
-   - An upper aqueous phase containing RNA.
+  RNA is separated from DNA through the *acid-guanidinium-phenol-chloroform
+  (AGPC)* extraction principle. TRIzol reagent contains phenol and guanidine
+  thiocyanate at acidic pH (approximately 4--6). After homogenization and phase
+  separation with chloroform, the mixture separates into three phases based on
+  differential solubility at acidic pH:
+  - A lower organic phase (phenol-chloroform) containing proteins and lipids.
+  - An interphase containing DNA.
+  - An upper aqueous phase containing RNA.
 
-   At acidic pH, DNA is less protonated and preferentially partitions into the
-   interphase and organic phase, while RNA, being more negatively charged due
-   to its ribose-phosphate backbone, remains in the aqueous phase. This
-   pH-dependent partitioning is the key mechanism that allows selective
-   isolation of RNA from DNA without the need for DNase treatment. After phase
-   separation, RNA is recovered by isopropanol precipitation from the aqueous
-   phase, leaving DNA behind in the interphase.
+  At acidic pH, DNA is less protonated and preferentially partitions into the
+  interphase and organic phase, while RNA, being more negatively charged due to
+  its ribose-phosphate backbone, remains in the aqueous phase. This pH-dependent
+  partitioning is the key mechanism that allows selective isolation of RNA from
+  DNA without the need for DNase treatment. After phase separation, RNA is
+  recovered by isopropanol precipitation from the aqueous phase, leaving DNA
+  behind in the interphase.
 
 = Appendix
 
