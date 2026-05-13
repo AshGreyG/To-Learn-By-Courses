@@ -503,10 +503,54 @@ expected 0.9 kb fragment. Her contribution is gratefully acknowledged.
 
 == 5.3 DNA Purification and Quantification
 
-*To be completed after the experiment.*
+#figure(
+  table(
+    stroke: none,
+    columns: (auto, auto, auto, auto),
+    align: (center, center, center, center),
+    inset: (x: 20pt, y: 6pt),
+    table.hline(),
+    table.header(
+      [Sample],
+      [Concentration (ng/µL)],
+      [$A_260 \/ A_280$],
+      [$A_260 \/ A_230$],
+    ),
+    table.hline(stroke: 0.4pt),
+    [DNA Purification],
+    [17.050],
+    [1.571],
+    [0.994],
+    table.hline(),
+  ),
+  caption: "Spectrophotometric Quantification of Purified DNA",
+)
 
-Record the DNA concentration (ng/µL) from Nanophotometer measurements and
-the estimated concentration from gel densitometry comparison.
+The DNA concentration after ethanol precipitation and restriction digestion was
+measured as 17.050 ng/µL by Nanophotometer, yielding a total of approximately
+170 ng from the 10 µL elution. This represents a substantial loss from the
+starting material, which is consistent with the cumulative losses expected
+through sequential purification steps (column purification of PCR product,
+restriction digestion, and ethanol precipitation).
+
+The purity indicators, however, reveal significant concerns. The $A_260\/A_280$
+ratio of 1.571 is well below the accepted range for pure DNA (1.8–2.0),
+suggesting contamination by proteins or phenol carryover from the purification
+procedure. The $A_260\/A_230$ ratio of 0.994 is also markedly below the
+acceptable threshold (>1.8–2.0), indicating the presence of organic
+contaminants such as residual phenol, EDTA, carbohydrates, or chaotropic salts
+from the column binding buffer.
+
+These suboptimal purity ratios likely stem from the ethanol precipitation step
+(Section 4.3, step 3). Incomplete removal of the supernatant after
+centrifugation, insufficient washing with 70% ethanol, or inadequate drying of
+the pellet before resuspension could all contribute to contaminant carryover.
+Additionally, the initial silica-gel column purification may have been
+inefficient if the binding, washing, or elution conditions were not optimal.
+
+Despite the low purity, the recovered DNA was carried forward to ligation and
+transformation, as sufficient intact DNA was present for downstream cloning
+steps.
 
 == 5.4 Transformation and Blue-White Screening
 
