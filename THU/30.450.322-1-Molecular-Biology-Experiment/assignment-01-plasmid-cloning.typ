@@ -454,10 +454,52 @@ the restriction digestion was successful, and the purified 1.7 kb insert and
 
 == 5.2 PCR Amplification
 
-*To be completed after the experiment.*
+#align(center)[
+  #stack(dir: ltr)[
+    #box(width: 70%)[
+      #figure(
+        image("assets/pcr-amplification.png"),
+        caption: "Agarose Gel Electrophoresis of PCR Products",
+      ) <fig:pcr>
+    ]
+  ]
+]
 
-Expected result: A bright band at approximately 0.9 kb, corresponding to
-the Myc-tagged SIPAR fragment.
+The agarose gel electrophoresis result of the PCR amplification is shown in
+@fig:pcr. While several lanes on the gel show clear, sharp bands at the expected
+~0.9 kb position — confirming that the PCR master mix, thermal cycling program,
+and reagents were generally functional — the lanes corresponding to our group
+(marked with red boxes) show a complete absence of the target band.
+
+*Absence of target band* — No visible band at approximately 0.9 kb was detected
+in either of our two replicate reactions. This indicates that the PCR did not
+successfully amplify the Myc-tagged SIPAR fragment from our samples.
+
+*Contrast with successful lanes* — Other lanes on the same gel (e.g., lanes 2,
+3, 5, and 6 from the left) display bright, sharply defined bands at the
+correct molecular weight, confirming that the master mix and thermal cycler
+were generally capable of producing the expected 0.9 kb product. The failure
+is therefore specific to our individual reactions rather than a systemic issue.
+
+Potential causes include:
+
+- *Template-related issues*: The template DNA may have been omitted, degraded,
+  or contaminated with PCR inhibitors during sample preparation.
+- *Pipetting error*: A critical component (template DNA or primers) may have been
+  inadvertently missed when setting up these specific reactions.
+- *Insufficient template concentration*: The starting DNA concentration may have
+  been too low for detectable amplification, possibly due to inaccurate
+  quantification or excessive dilution.
+
+Further troubleshooting steps would include repeating the PCR with a fresh
+dilution of template DNA, verifying the template concentration by
+Nanophotometer measurement, and including a positive control template to
+confirm reagent integrity.
+
+Since our own PCR did not produce a visible product, the PCR product used in
+subsequent steps (Sections 4.3–4.7 and 5.3–5.5) was generously provided by our
+experimental partner *Jiaxin Liang*, whose reaction successfully amplified the
+expected 0.9 kb fragment. Her contribution is gratefully acknowledged.
 
 == 5.3 DNA Purification and Quantification
 
@@ -592,3 +634,11 @@ large-scale production of recombinant DNA. A typical genetic engineering
 workflow integrates both: PCR amplifies the target fragment, restriction
 enzymes and ligase insert it into a vector, and bacterial cloning propagates
 the recombinant construct for downstream applications.
+
+= Acknowledgement
+
+We thank *Jiaxin Liang* for generously providing the successfully amplified
+PCR product (0.9 kb Myc-tagged SIPAR fragment) used in the subsequent DNA
+purification, ligation, transformation, and screening experiments (Sections
+4.3–4.7). Her contribution made it possible to complete the gene cloning
+workflow despite the failure of our own PCR reaction.
