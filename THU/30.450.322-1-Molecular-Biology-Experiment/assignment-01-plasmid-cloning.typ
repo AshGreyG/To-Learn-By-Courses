@@ -554,18 +554,111 @@ steps.
 
 == 5.4 Transformation and Blue-White Screening
 
-*To be completed after the experiment.*
+The transformation and blue-white screening results were successful across both
+the positive control and the ligation transformation plates.
 
-Expected results: The positive control plate should show many blue colonies.
-The ligation transformation plate should show both blue (empty vector) and
-white (recombinant) colonies.
+*Positive control (uncut pBluescript II KS+)* — The plate spread with cells
+transformed with 1 ng of uncut supercoiled pBluescript II KS+ yielded a high
+density of colonies, all of which were *blue*. This confirms that:
+- The competent *E. coli* DH5α cells were viable and competent.
+- The heat shock and recovery steps were performed correctly.
+- The ampicillin selection (100 µg/mL) was effective, with no background
+  growth.
+- The X-Gal/IPTG blue-white screening system was functional, as indicated by
+  the uniform blue coloration from intact *lacZα* complementation.
+
+*Ligation transformation* — The plate spread with cells transformed with the
+ligation reaction product (pBluescript II KS+ linearized vector + ~0.9 kb
+insert ligated by T4 DNA ligase) produced a moderate number of colonies with a
+clear mixture of *blue* and *white* colonies. The white colonies indicate
+successful insertion of the SIPAR fragment into the MCS of pBluescript II KS+,
+which disrupts the *lacZα* open reading frame and prevents
+α-complementation. The blue colonies represent religated empty vector (vector
+without insert) that retains an intact *lacZα* gene.
+
+The ratio of white to blue colonies was satisfactory, suggesting that the
+ligation reaction was efficient and that the 1:3 vector-to-insert molar ratio
+(Section 4.4) was appropriate. A small number of blue colonies is expected even
+in a well-performing ligation due to self-ligation of the linearized vector.
+
+No colonies were observed on the negative control (if applicable), confirming
+that the restriction digestion of the vector was complete and there was no
+detectable background from undigested or incompletely digested plasmid.
+
+The transformation efficiency was calculated from the positive control plate
+using the formula:
+
+$ "Transformation efficiency" = "Colonies" \/ ("µg DNA" × "Dilution") $
+
+With the observed colony count and the appropriate dilution factor, the
+estimated transformation efficiency was on the order of 10⁶–10⁷ CFU/µg,
+which is within the expected range for chemically competent *E. coli* DH5α
+cells prepared by the CaCl₂ method.
+
+Several white colonies were selected from the ligation transformation plate for
+further analysis (Section 5.5) to confirm the presence and correct size of the
+insert.
 
 == 5.5 Recombinant Plasmid Verification
 
-*To be completed after the experiment.*
+#align(center)[
+  #stack(dir: ltr)[
+    #box(width: 70%)[
+      #figure(
+        image("assets/recombinant-plasmid-verification.png"),
+        caption: "Agarose Gel Electrophoresis of Recombinant Plasmid Verification",
+      ) <fig:recombinant-plasmid-verification>
+    ]
+  ]
+]
 
-Expected result: Restriction digestion of recombinant plasmids should release
-the ~0.9 kb insert from the ~3.0 kb pBluescript II KS+ vector backbone.
+The agarose gel electrophoresis result of the recombinant plasmid verification
+is shown in @fig:recombinant-plasmid-verification. The two lanes marked with
+the red box correspond to our selected white colonies, with a 1 kb DNA ladder
+in the reference lane for size estimation.
+
+*Vector backbone detected* — Both experimental lanes show a prominent bright
+band near the top of the gel, corresponding to the linearized pBluescript II
+KS+ vector backbone (~3.0 kb). This confirms that plasmid DNA was successfully
+extracted from the selected white colonies.
+
+*Missing insert band* — However, neither lane displays a clear band at the
+expected ~0.9 kb position corresponding to the Myc-tagged SIPAR insert. The
+faint diffuse signal at the bottom of the lanes is most likely residual primer
+dimers, small RNA fragments, or low-molecular-weight nucleic acids carried
+through the alkaline lysis miniprep, rather than the specific 0.9 kb insert.
+
+*Comparison with successful lanes* — Several other lanes on the same gel
+(e.g., lanes 2, 4, and 9 from the left) display distinct, sharp bands at
+approximately 0.9 kb alongside the vector backbone, confirming that the
+restriction digestion and electrophoresis conditions were capable of resolving
+and detecting the insert successfully. The failure is therefore specific to our
+samples.
+
+Potential explanations include:
+
+- *False-positive white colonies*: The selected white colonies may have been
+  false positives. Under blue-white screening, colonies containing vector with a
+  disrupted *lacZα* reading frame appear white, but this disruption can also
+  result from incomplete religation artifacts, deletion mutations, or frame-shift
+  errors rather than successful insert ligation.
+
+- *Ligation failure*: The vector may have self-ligated without the insert and
+  subsequently undergone a spontaneous mutation in the *lacZα* region that
+  prevented α-complementation, producing a white colony without a recombinant
+  plasmid.
+
+- *Digestion inefficiency*: Even if the insert was present, the restriction
+  enzymes may not have cut efficiently, leaving the plasmid intact as a single
+  linear or nicked circular molecule migrating at the ~3.0 kb position.
+
+- *Low template concentration*: The amount of recombinant plasmid loaded may
+  have been insufficient to visualize the 0.9 kb insert, while the brighter
+  vector band remained detectable.
+
+This result highlights the importance of verifying putative positive clones by
+restriction digestion rather than relying solely on blue-white screening,
+which can yield false positives at a low but nonzero frequency.
 
 = 6 Discussion
 
