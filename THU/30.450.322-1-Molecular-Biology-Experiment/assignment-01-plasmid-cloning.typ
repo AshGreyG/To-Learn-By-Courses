@@ -168,8 +168,8 @@ Positive clones are further verified by:
 
 == 4.1 Template Plasmid Extraction and Restriction Digestion
 
-1. (If needed) Extract plasmid pCMV-Myc-SIPAR from *E. coli* culture using
-   alkaline lysis and ethanol precipitation.
+1. Extract plasmid pCMV-Myc-SIPAR from *E. coli* culture using alkaline lysis
+   and ethanol precipitation (or use pre-extracted plasmid provided by the TA).
 
 2. Set up restriction digestion of pCMV-Myc-SIPAR with EcoRI and XhoI:
 
@@ -554,39 +554,18 @@ steps.
 
 == 5.4 Transformation and Blue-White Screening
 
-The transformation and blue-white screening results were successful across both
-the positive control and the ligation transformation plates.
+Both the positive control and the ligation transformation plates yielded
+colonies, demonstrating successful transformation.
 
 *Positive control (uncut pBluescript II KS+)* — The plate spread with cells
 transformed with 1 ng of uncut supercoiled pBluescript II KS+ yielded a high
-density of colonies, all of which were *blue*. This confirms that:
+density of blue colonies, confirming:
 - The competent *E. coli* DH5α cells were viable and competent.
 - The heat shock and recovery steps were performed correctly.
-- The ampicillin selection (100 µg/mL) was effective, with no background
-  growth.
-- The X-Gal/IPTG blue-white screening system was functional, as indicated by
-  the uniform blue coloration from intact *lacZα* complementation.
+- Ampicillin selection (100 µg/mL) was effective, with no background growth.
+- The X-Gal/IPTG blue-white screening system was functional.
 
-*Ligation transformation* — The plate spread with cells transformed with the
-ligation reaction product (pBluescript II KS+ linearized vector + ~0.9 kb
-insert ligated by T4 DNA ligase) produced a moderate number of colonies with a
-clear mixture of *blue* and *white* colonies. The white colonies indicate
-successful insertion of the SIPAR fragment into the MCS of pBluescript II KS+,
-which disrupts the *lacZα* open reading frame and prevents
-α-complementation. The blue colonies represent religated empty vector (vector
-without insert) that retains an intact *lacZα* gene.
-
-The ratio of white to blue colonies was satisfactory, suggesting that the
-ligation reaction was efficient and that the 1:3 vector-to-insert molar ratio
-(Section 4.4) was appropriate. A small number of blue colonies is expected even
-in a well-performing ligation due to self-ligation of the linearized vector.
-
-No colonies were observed on the negative control (if applicable), confirming
-that the restriction digestion of the vector was complete and there was no
-detectable background from undigested or incompletely digested plasmid.
-
-The transformation efficiency was calculated from the positive control plate
-using the formula:
+The transformation efficiency was calculated as:
 
 $ "Transformation efficiency" = "Colonies" \/ ("µg DNA" × "Dilution") $
 
@@ -595,9 +574,13 @@ estimated transformation efficiency was on the order of 10⁶–10⁷ CFU/µg,
 which is within the expected range for chemically competent *E. coli* DH5α
 cells prepared by the CaCl₂ method.
 
-Several white colonies were selected from the ligation transformation plate for
-further analysis (Section 5.5) to confirm the presence and correct size of the
-insert.
+*Ligation transformation* — The plate spread with cells transformed with the
+ligation reaction product yielded a moderate number of colonies with a mixture
+of blue and white colonies. White colonies are expected to arise from
+disruption of the *lacZα* open reading frame by insert integration, while
+blue colonies represent religated empty vector retaining an intact *lacZα*
+gene. Several white colonies were selected for verification by restriction
+digestion (Section 5.5).
 
 == 5.5 Recombinant Plasmid Verification
 
@@ -662,16 +645,43 @@ which can yield false positives at a low but nonzero frequency.
 
 = 6 Discussion
 
-*To be completed after the experiment.*
+*Restriction digestion* (Section 5.1) was the most straightforward step.
+Single digestion with EcoRI linearized the pCMV-Myc-SIPAR plasmid, and double
+digestion with EcoRI and XhoI released the expected ~1.7 kb insert and ~3.8 kb
+backbone with minimal smearing — confirming the reproducibility of the
+digestion conditions.
 
-Consider the following points:
+*PCR amplification* (Section 5.2) failed for our samples while succeeding for
+other groups on the same gel. The absence of the ~0.9 kb target band with
+visible primer dimers points to a template-specific issue rather than a
+systemic reagent problem. This reinforces the importance of including a
+positive control template in every PCR setup.
 
-- Efficiency of restriction digestion (single vs. double digestion patterns).
-- PCR specificity and yield (factors affecting amplification).
-- Transformation efficiency calculation and comparison with theoretical values.
-- Ratio of blue to white colonies and its implications.
-- Possible sources of false positives (e.g., uncut vector, partial digestion).
-- Troubleshooting if expected results were not obtained.
+*DNA purification and quantification* (Section 5.3) yielded poor purity ratios
+($A_260\/A_280 = 1.571$, $A_260\/A_230 = 0.994$), likely from incomplete
+removal of organic contaminants during ethanol precipitation. Despite this,
+enough DNA was recovered (170 ng total) for ligation and transformation.
+
+*Transformation and blue-white screening* (Section 5.4) confirmed competent
+cell viability and functional selection. The estimated transformation
+efficiency of 10⁶–10⁷ CFU/µg is typical for laboratory-prepared CaCl₂-
+competent *E. coli* DH5α cells, though an order of magnitude lower than
+commercial competent cells (10⁸–10⁹ CFU/µg).
+
+*Recombinant plasmid verification* (Section 5.5) revealed that the selected
+white colonies were false positives — the vector backbone was detected but no
+~0.9 kb insert was released. Possible explanations include:
+
+- The low purity of the ligation input DNA (Section 5.3) may have reduced
+  ligation efficiency, decreasing the proportion of true recombinants.
+- White colony phenotypes can arise from frame-shift mutations, *lacZα*
+  deletions, or religation artifacts rather than successful insert integration.
+- The 1:3 vector-to-insert molar ratio may not have been optimal given the
+  imprecise quantification of the contaminated DNA.
+
+Screening more colonies (8–12 rather than 2) or using colony PCR as a rapid
+pre-screening method would improve the chance of identifying true positives in
+future experiments.
 
 = 7 Supplementary Question: Gene Cloning vs. PCR
 
