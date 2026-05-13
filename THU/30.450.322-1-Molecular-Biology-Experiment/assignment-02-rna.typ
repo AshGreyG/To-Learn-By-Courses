@@ -327,9 +327,9 @@ Measure RNA concentration on a Nanophotometer. Record:
         [first-strand cDNA],
         [total RNA (diluted to 50 ng/µL)],
         [Primers (1 µL + 1 µL)],
-        [Your design F + R],
+        [Gapdh F + R],
         [Actin F + R],
-        [Your design F + R],
+        [Gapdh F + R],
         table.hline(),
       ),
       caption: "PCR Reaction Setup — Three Groups",
@@ -442,41 +442,63 @@ transcription and gene expression analysis.
 
 == 5.3 PCR Amplification Results
 
-  #figure(
-    table(
-      stroke: none,
-      columns: (auto, auto, auto, auto),
-      align: (center, center, center, center),
-      inset: (x: 20pt, y: 6pt),
-      table.hline(),
-      table.header(
-        [Reaction],
-        [Template],
-        [Primers],
-        [Expected Product Size (bp)],
-      ),
-      table.hline(stroke: 0.4pt),
-      [Experimental (E)], [cDNA], [Your design F + R], [TBD],
-      [Positive (+)], [cDNA], [Actin F + R], [TBD],
-      [Negative (-)], [Total RNA], [Your design F + R], [None],
-      table.hline(),
+#figure(
+  table(
+    stroke: none,
+    columns: (auto, auto, auto, auto),
+    align: (center, center, center, center),
+    inset: (x: 20pt, y: 6pt),
+    table.hline(),
+    table.header(
+      [Reaction],
+      [Template],
+      [Primers],
+      [Expected Product Size (bp)],
     ),
-    caption: "PCR Amplification Setup and Expected Results",
-  )
+    table.hline(stroke: 0.4pt),
+    [Experimental (E)], [cDNA], [Gapdh F + R], [344],
+    [Positive (+)], [cDNA], [Actin F + R], [224],
+    [Negative (-)], [Total RNA], [Gapdh F + R], [None],
+    table.hline(),
+  ),
+  caption: "PCR Amplification Setup and Expected Results",
+)
 
-  // #figure(
-  //   image("assets/pcr-gel-electrophoresis.png"),
-  //   caption: "Agarose Gel Electrophoresis of PCR Products",
-  // )
+#align(center)[
+  #stack(dir: ltr)[
+    #box(width: 70%)[
+      #figure(
+        image("assets/rt-pcr-gel-electrophoresis.png"),
+        caption: "Agarose Gel Electrophoresis of PCR Products",
+      ) <rt-pcr-gel>
+    ]
+  ]
+]
 
-Analyze the PCR gel results:
+The agarose gel electrophoresis of the RT-PCR products showed no visible
+fluorescent bands in any of the three reactions (Experimental, Positive control,
+and Negative control) for our group (lanes 5--7). This result indicates that the
+PCR amplification did not yield detectable products under the conditions used.
 
-- Does the experimental group show a band at the expected size?
-- Does the positive control (Actin) show a band confirming successful
-  reverse transcription?
-- Does the negative control (total RNA) show any band? (No band indicates
-  no genomic DNA contamination.)
-- Discuss the specificity of amplification.
+The absence of a band in the experimental group (Gapdh, expected 344 bp)
+suggests that the target gene was not successfully amplified. More critically,
+the positive control (Actin, expected 224 bp) also failed to produce a band,
+indicating that the issue likely occurred upstream of the PCR step rather than
+being specific to primer design. The most probable cause is an unsuccessful
+reverse transcription reaction — if first-strand cDNA was not synthesized, no
+template would be available for either Gapdh or Actin amplification. The
+negative control (total RNA) appropriately showed no band, which rules out
+genomic DNA contamination but does not rescue the failed amplification of the
+other two reactions.
+
+Notably, the RNA quality assessment in Sections 5.1 and 5.2 confirmed that the
+total RNA was of good integrity and purity ($A_260\/A_280 = 2.073$, intact rRNA
+bands at ~2:1 ratio). Therefore, RNA degradation is unlikely to be the primary
+cause of failure. Possible troubleshooting steps include: verifying the
+activity of the reverse transcriptase and Taq polymerase, repeating the reverse
+transcription with fresh reagents and a positive control RNA template, checking
+the annealing temperature and primer specificity, and including a no-reverse-
+transcriptase control to distinguish RT failure from PCR inhibition.
 
 == 5.4 Sequencing Results (Optional)
 
@@ -525,12 +547,12 @@ amplicon with the expected gene sequence.
 
 = Appendix
 
-1. Primer sequences designed for the target gene:
+1. Primer sequences designed for the target gene (*Gapdh*, NM_008084):
 
-  - Forward primer (5' → 3'): TBD
-  - Reverse primer (5' → 3'): TBD
-  - $T_m$: TBD
-  - Amplicon size: TBD bp
+  - Forward primer (5' → 3'): GTGGCAAAGTGGAGATTGTTGC
+  - Reverse primer (5' → 3'): TTTCTCGTGGTTCACACCCATC
+  - $T_m$: approx. 60°C
+  - Amplicon size: 344 bp
 
 2. How to analyze RNA gel electrophoresis data:
 
