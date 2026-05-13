@@ -363,7 +363,7 @@ Positive clones are further verified by:
 
 7. Calculate transformation efficiency:
 
-   $"Transformation efficiency" = "Colonies" / ("µg DNA" × "Dilution")$
+  $"Transformation efficiency" = "Colonies" \/ ("µg DNA" × "Dilution")$
 
 == 4.7 Screening and Identification of Recombinants
 
@@ -411,12 +411,46 @@ Positive clones are further verified by:
 
 == 5.1 Plasmid Extraction and Restriction Digestion
 
-*To be completed after the experiment.*
+#align(center)[
+  #stack(dir: ltr)[
+    #box(width: 70%)[
+      #figure(
+        image("assets/plasmid-extraction-restriction-digestion.png"),
+        caption: "Native Agarose Gel Electrophoresis of Plasmid Extraction",
+      ) <fig:plasmid-digestion>
+    ]
+  ]
+]
 
-Expected results: Restriction digestion of pCMV-Myc-SIPAR (5.5 kb) with
-EcoRI alone (Reaction II) should linearize the plasmid. Double digestion
-with EcoRI and XhoI (Reaction III) should release a ~1.7 kb insert band
-and a ~3.8 kb vector backbone band.
+The agarose gel electrophoresis result of the pCMV-Myc-SIPAR plasmid restriction
+digestion is shown in @fig:plasmid-digestion. The gel contains multiple sets of
+three lanes corresponding to the three digestion reactions, with the far right
+lane loaded with the 1 kb DNA ladder for size estimation.
+
+*Reaction I (circular plasmid, no enzyme)* — The first lane of each set shows
+two distinct bands. The lower, brighter band represents the *supercoiled
+plasmid*, which migrates faster through the agarose matrix due to its compact
+conformation. The upper band corresponds to the *nicked (relaxed circular)*
+form of the 5.5 kb plasmid, which migrates more slowly.
+
+*Reaction II (EcoRI single digestion)* — The second lane displays a single
+prominent band positioned higher than the supercoiled band in Reaction I.
+This is the *linearized 5.5 kb plasmid* — a single cut by EcoRI converts the
+circular DNA into a linear molecule, which migrates at a rate intermediate
+between the supercoiled and nicked circular forms.
+
+*Reaction III (EcoRI + XhoI double digestion)* — The third lane clearly
+resolves two bands: the upper band at approximately 3.8 kb corresponds to the
+linearized vector backbone, and the lower band at approximately 1.7 kb
+corresponds to the released SIPAR insert. The sizes match the expected
+restriction map of pCMV-Myc-SIPAR.
+
+Minor smearing is visible below the main bands in several lanes, which is
+commonly observed in agarose gel electrophoresis and may result from slight DNA
+degradation or well overloading. The consistent banding pattern across the
+replicate sets confirms the reproducibility of the digestion reactions. Overall,
+the restriction digestion was successful, and the purified 1.7 kb insert and
+3.8 kb backbone fragments are suitable for subsequent cloning steps.
 
 == 5.2 PCR Amplification
 
