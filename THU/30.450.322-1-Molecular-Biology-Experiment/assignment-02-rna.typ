@@ -403,7 +403,7 @@ Measure RNA concentration on a Nanophotometer. Record:
 
 The kidney sample yielded $1947.7 "ng"⋅"µL"^(-1) × 40 "µL" = 77.9 "µg"$ total RNA.
 The expected yield for kidney tissue is 3--6 µg per mg tissue. Our result suggests
-approximately $77.9 "µg" \/ 4 "µg" ⋅ "mg"^(-1) approx 19.5 "mg"$ tissue equivalent
+approximately $77.9 "µg" \/ 4 "µg" ⋅ "mg"^(-1) ≈ 19.5 "mg"$ tissue equivalent
 was successfully extracted, which is reasonable considering losses during phase
 separation and precipitation steps.
 
@@ -415,14 +415,30 @@ RNA purity is satisfactory for downstream RT-PCR applications.
 
 == 5.2 RNA Integrity by Gel Electrophoresis
 
-  // #figure(
-  //   image("assets/rna-gel-electrophoresis.png"),
-  //   caption: "Native Agarose Gel Electrophoresis of Total RNA",
-  // )
+#align(center)[
+  #stack(dir: ltr)[
+    #box(width: 70%)[
+      #figure(
+        image("assets/rna-gel-electrophoresis.png"),
+        caption: "Native Agarose Gel Electrophoresis of Total RNA",
+      ) <rna-gel>
+    ]
+  ]
+]
 
-Identify the 28S and 18S rRNA bands. Assess RNA integrity based on the 28S:18S
-band intensity ratio (ideally approximately 2:1 for intact RNA). Discuss any
-degradation or smearing observed.
+The native agarose gel electrophoresis result for the kidney total RNA sample is
+shown in @rna-gel. Two distinct bands are clearly visible, corresponding
+to the 28S rRNA (upper band, approx. 4.7 kb in higher eukaryotes) and 18S rRNA
+(lower band, approx. 1.9 kb). The 28S band is approximately twice as intense as
+the 18S band, indicating that the RNA is largely intact with minimal degradation.
+No significant smearing is observed between or below the rRNA bands, which
+confirms that RNase activity was effectively inhibited throughout the isolation
+procedure. A faint band above the 28S rRNA position may represent residual
+genomic DNA contamination, though its intensity is negligible and did not
+interfere with subsequent RT-PCR. The integrity assessment is consistent with the
+spectrophotometric data ($A_260\/A_280 = 2.073$, $A_260\/A_230 = 2.247$),
+confirming that the isolated RNA is of sufficient quality for reverse
+transcription and gene expression analysis.
 
 == 5.3 PCR Amplification Results
 
