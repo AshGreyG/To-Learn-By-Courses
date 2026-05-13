@@ -512,43 +512,25 @@ gene sequence (NM_008084).
 
 = 6 Discussion Questions
 
-1. *Why is it important to use DEPC-treated water and RNase-free plasticware
-   during RNA isolation? What would happen if RNases contaminated the sample?*
+1. *How is RNA separated from DNA during the total RNA extraction process using
+   TRIzol reagent?*
 
-   (Discuss the ubiquitous presence of RNases, their stability, and the
-   consequences of RNA degradation on downstream applications like RT-PCR.)
+   RNA is separated from DNA through the *acid-guanidinium-phenol-chloroform
+   (AGPC)* extraction principle. TRIzol reagent contains phenol and guanidine
+   thiocyanate at acidic pH (approximately 4--6). After homogenization and
+   phase separation with chloroform, the mixture separates into three phases
+   based on differential solubility at acidic pH:
+   - A lower organic phase (phenol-chloroform) containing proteins and lipids.
+   - An interphase containing DNA.
+   - An upper aqueous phase containing RNA.
 
-2. *In the TRIzol-based RNA isolation, after centrifugation, the mixture
-   separates into three phases. Which phase contains the RNA, and why does RNA
-   remain in that phase?*
-
-   (Discuss the acidic pH of TRIzol and how it affects the partitioning of
-   RNA, DNA, and proteins between the aqueous and organic phases.)
-
-3. *What does the $A_260/A_280$ ratio indicate? What could cause an abnormal
-   ratio (e.g., < 1.8 or > 2.0)?*
-
-   (Discuss protein contamination lowering the ratio, and possible reasons for
-   elevated ratios.)
-
-4. *Why is it necessary to include both a positive control (Actin primers) and
-   a negative control (total RNA as template) in the PCR experiment?*
-
-   (Discuss the purpose of each control: positive control verifies the RT
-   reaction worked; negative control checks for genomic DNA contamination.)
-
-5. *What are the key differences between using Oligo(dT) primers and random
-   hexamers for reverse transcription? When would you choose one over the
-   other?*
-
-   (Oligo(dT) selectively primes poly(A)+ mRNA; random hexamers prime all RNA
-   including rRNA and tRNA. Compare their applications.)
-
-6. *If the experimental PCR reaction yielded no band or a band of unexpected
-   size, what troubleshooting steps would you take?*
-
-   (Discuss possible causes: primer design issues, RNA degradation, suboptimal
-   annealing temperature, PCR inhibitors, etc.)
+   At acidic pH, DNA is less protonated and preferentially partitions into the
+   interphase and organic phase, while RNA, being more negatively charged due
+   to its ribose-phosphate backbone, remains in the aqueous phase. This
+   pH-dependent partitioning is the key mechanism that allows selective
+   isolation of RNA from DNA without the need for DNase treatment. After phase
+   separation, RNA is recovered by isopropanol precipitation from the aqueous
+   phase, leaving DNA behind in the interphase.
 
 = Appendix
 
@@ -558,12 +540,3 @@ gene sequence (NM_008084).
   - Reverse primer (5' → 3'): TTTCTCGTGGTTCACACCCATC
   - $T_m$: approx. 60°C
   - Amplicon size: 344 bp
-
-2. How to analyze RNA gel electrophoresis data:
-
-   (Python scripts or image analysis details to be added based on experimental
-   data.)
-
-3. Sequencing data analysis:
-
-   (Method for aligning sequencing results with reference gene sequence.)
