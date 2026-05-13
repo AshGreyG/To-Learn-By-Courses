@@ -500,10 +500,15 @@ transcription with fresh reagents and a positive control RNA template, checking
 the annealing temperature and primer specificity, and including a no-reverse-
 transcriptase control to distinguish RT failure from PCR inhibition.
 
-== 5.4 Sequencing Results (Optional)
+== 5.4 Sequencing Results
 
-Discuss the Sanger sequencing results if available. Compare the sequenced
-amplicon with the expected gene sequence.
+Sanger sequencing was not performed because the PCR amplification did not
+produce a visible band for the experimental group, and therefore no specific
+amplicon was available for sequencing. Once the RT-PCR conditions are optimized
+and a clear band at the expected size (344 bp for Gapdh) is obtained, the
+amplicon can be excised, purified, and submitted for Sanger sequencing to
+confirm the identity of the amplified product by alignment with the reference
+gene sequence (NM_008084).
 
 = 6 Discussion Questions
 
