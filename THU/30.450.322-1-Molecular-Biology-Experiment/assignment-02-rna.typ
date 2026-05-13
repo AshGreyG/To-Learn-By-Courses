@@ -15,7 +15,7 @@
 - Experiment Name: *Isolation of Total RNA from Animal/Plant Tissues, Gel
   Electrophoresis and Reverse Transcription PCR (RT-PCR)*
 - Experiment Date: *#experiment-date.display()*
-- Experiment Partners: TBD
+- Experiment Partners: Jiaxin Liang
 
 = 1 Experiment Purpose
 

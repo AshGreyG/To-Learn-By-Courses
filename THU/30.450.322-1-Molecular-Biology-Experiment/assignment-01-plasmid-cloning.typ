@@ -14,7 +14,7 @@
 
 - Experiment Name: *Plasmid DNA Manipulation and Gene Cloning*
 - Experiment Date: *#experiment-date.display()*
-- Experiment Partners: TBD
+- Experiment Partners: Jiaxin Liang
 
 = 1 Experiment Purpose
 
