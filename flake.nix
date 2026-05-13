@@ -37,18 +37,18 @@
     in
     {
       packages = forAllSystems ({ pkgs }: {
-        handbook = pkgs.writeShellApplication {
+        homework = pkgs.writeShellApplication {
           name = "homework";
           runtimeInputs = [ pkgs.typst ];
           text = ''
             mkdir -p output
             FAILED=0
             SUCCESS=0
-            for file in $(find . -name "*.typ" -type f); do
+            find . -name "*.typ" -type f -print0 | while IFS= read -r -d "" file; do
               echo "Compiling $file..."
               filename=$(basename "$file" .typ)
               # Correct syntax: typst compile <INPUT> [OUTPUT]
-              if typst compile "$file" "output/${filename}.pdf" 2>&1; then
+              if typst compile "$file" "output/''${filename}.pdf" 2>&1; then
                 echo "✓ Successfully compiled: $file"
                 SUCCESS=$((SUCCESS + 1))
               else
@@ -66,7 +66,19 @@
             fi
           '';
         };
-
+        clean = pkgs.writeShellApplication {
+          name = "clean";
+          text = ''
+	          echo "→ Cleaning up build directory"
+            if ls output/ >/dev/null 2>&1; then
+              rm -rf output
+              echo "✅ clean successfully"
+            else
+              echo "❌ failed to clean because there are no matched files"
+            fi
+          '';
+        };
+      });
       devShells = forAllSystems ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
