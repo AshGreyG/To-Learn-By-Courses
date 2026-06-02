@@ -6,7 +6,7 @@
 #let evaluated(expr, size: 100%) = $lr(#expr|, size: #size)$
 
 #align(center, text(17pt)[
-  = Week-2 Homework of Normal Physics (Mechanics Part)
+  = Chapter-2 Homework of Normal Physics (Mechanics Part)
 ])
 
 = Chapter 2

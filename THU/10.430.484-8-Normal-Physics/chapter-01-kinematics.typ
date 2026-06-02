@@ -5,7 +5,7 @@
 #show math.equation.where(block: true): set text(size: 14pt)
 
 #align(center, text(17pt)[
-  = Week-1 Homework of Normal Physics (Mechanics Part)
+  = Chapter-1 Homework of Normal Physics (Mechanics Part)
 ])
 
 = 1 Chapter 1
