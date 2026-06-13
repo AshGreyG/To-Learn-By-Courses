@@ -4,9 +4,16 @@
 **/.agents
 **/*.pdf
 **/*.pptx
+**/*.ppt
+**/*.docx
+**/*.doc
 
 **/output
 **/node_modules
 
 # Remove the unnecessary raw data from git
 THU/44.000.261-1-Pharmaceutics-Experiment/assets/*.txt
+
+THU/30.450.203-3-Biochemistry/protein-visualization
+**/*.pdb
+**/*.cif
