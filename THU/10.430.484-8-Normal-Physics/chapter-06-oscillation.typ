@@ -283,7 +283,7 @@
 
 - Answer:
 
-  Both vibrations have the same angular frequency $ω = 2 "rad"/"s"$, so we
+  Both vibrations have the same angular frequency $ω = 2 "rad"\/"s"$, so we
   can use phasor addition. The amplitude of the resultant vibration is:
 
   $ A & = sqrt(A_1^2 + A_2^2 + 2 A_1 A_2 cos(Δ φ)) \
