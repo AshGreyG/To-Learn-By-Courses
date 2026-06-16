@@ -7,6 +7,8 @@
 **/*.ppt
 **/*.docx
 **/*.doc
+**/*.tar.gz
+**/*.txt
 
 **/output
 **/node_modules
@@ -15,5 +17,7 @@
 THU/44.000.261-1-Pharmaceutics-Experiment/assets/*.txt
 
 THU/30.450.203-3-Biochemistry/protein-visualization
+THU/30.450.203-3-Biochemistry/assets
+!THU/30.450.203-3-Biochemistry/assets/*.png
 **/*.pdb
 **/*.cif
